@@ -8,9 +8,9 @@ end
 function config.nvim_cmp()
   local cmp = require('cmp')
 
-  vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+  vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
-  local select_opts = {behavior = cmp.SelectBehavior.Select}
+  local select_opts = { behavior = cmp.SelectBehavior.Select }
 
   cmp.setup({
     preselect = cmp.PreselectMode.Item,
@@ -24,13 +24,13 @@ function config.nvim_cmp()
       end
     },
     sources = {
-      {name = 'path'},
-      {name = 'nvim_lsp', keyword_length = 3},
-      {name = 'buffer', keyword_length = 3},
-      {name = 'luasnip', keyword_length = 2},
+      { name = 'path' },
+      { name = 'nvim_lsp', keyword_length = 3 },
+      { name = 'buffer', keyword_length = 3 },
+      { name = 'luasnip', keyword_length = 2 },
     },
     formatting = {
-      fields = {'menu', 'abbr', 'kind'},
+      fields = { 'menu', 'abbr', 'kind' },
       format = function(entry, item)
         local menu_icon = {
           nvim_lsp = 'λ',
@@ -44,7 +44,7 @@ function config.nvim_cmp()
       end,
     },
     mapping = {
-      ['<CR>'] = cmp.mapping.confirm({select = true}),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
 
       ['<Tab>'] = cmp.mapping(function(fallback)
         local col = vim.fn.col('.') - 1
@@ -56,7 +56,7 @@ function config.nvim_cmp()
         else
           cmp.complete()
         end
-      end, {'i', 's'}),
+      end, { 'i', 's' }),
 
       ['<S-Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
@@ -64,7 +64,7 @@ function config.nvim_cmp()
         else
           fallback()
         end
-      end, {'i', 's'}),
+      end, { 'i', 's' }),
 
       ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
       ['<Down>'] = cmp.mapping.select_next_item(select_opts),
