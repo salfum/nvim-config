@@ -11,3 +11,8 @@ plugin({
     { 'nvim-telescope/telescope-fzy-native.nvim', opt = true },
   },
 })
+
+plugin({
+  'lewis6991/gitsigns.nvim',
+  config = conf.gitsigns,
+})

@@ -28,4 +28,12 @@ function config.telescope()
   require('telescope').load_extension('fzy_native')
 end
 
+function config.gitsigns()
+  vim.highlight.create('GitSignsAdd', { guifg = '#C3E88D' }, false)
+  vim.highlight.create('GitSignsChange', { guifg = '#FFCB6B' }, false)
+  vim.highlight.create('GitSignsDelete', { guifg = '#F07178' }, false)
+
+  require('gitsigns').setup()
+end
+
 return config
