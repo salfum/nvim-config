@@ -29,6 +29,7 @@ nmap({
 })
 
 imap({
+  { '<C-s>', cmd('write'), opts(noremap) },
   { '<C-h>', '<Bs>', opts(noremap) },
   { '<C-e>', '<End>', opts(noremap) },
   { '<C-a>', '<Home>', opts(noremap) },

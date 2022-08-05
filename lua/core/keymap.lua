@@ -3,14 +3,14 @@ local opts = {}
 
 function opts:new(instance)
   instance = instance
-    or {
-      options = {
-        silent = false,
-        nowait = false,
-        expr = false,
-        noremap = false,
-      },
-    }
+      or {
+        options = {
+          silent = false,
+          nowait = false,
+          expr = false,
+          noremap = false,
+        },
+      }
   setmetatable(instance, self)
   self.__index = self
   return instance

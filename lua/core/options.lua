@@ -118,3 +118,4 @@ vim.api.nvim_exec([[
     autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
     augroup end
 ]], false)
+
