@@ -103,4 +103,8 @@ function config.lua_snip()
   })
 end
 
+function config.autopairs()
+  require("nvim-autopairs").setup {}
+end
+
 return config
