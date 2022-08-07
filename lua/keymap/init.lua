@@ -1,9 +1,9 @@
 require('keymap.config')
-local key = require('core.keymap')
-local nmap = key.nmap
-local silent, noremap = key.silent, key.noremap
-local opts = key.new_opts
-local cmd = key.cmd
+local keymap = require('core.keymap')
+local nmap, xmap = keymap.nmap, keymap.xmap
+local silent, noremap, buffer = keymap.silent, keymap.noremap, keymap.buffer
+local opts = keymap.new_opts
+local cmd = keymap.cmd
 
 nmap({
   -- packer
@@ -22,22 +22,47 @@ nmap({
   { '<Leader>ff', cmd('Telescope find_files'), opts(noremap, silent) },
 })
 
--- nvim-lsp
-nmap({
-  { 'gD', cmd('lua vim.lsp.buf.declaration()'), opts(noremap, silent) },
-  { 'gd', cmd('lua vim.lsp.buf.definition()'), opts(noremap, silent) },
-  { 'K', cmd('lua vim.lsp.buf.hover()'), opts(noremap, silent) },
-  { 'gr', cmd('lua vim.lsp.buf.references()'), opts(noremap, silent) },
-  { 'gs', cmd('lua vim.lsp.buf.signature_help()'), opts(noremap, silent) },
-  { 'gi', cmd('lua vim.lsp.buf.implementation()'), opts(noremap, silent) },
-  { 'gt', cmd('lua vim.lsp.buf.type_definition()'), opts(noremap, silent) },
-  { '<Leader>gw', cmd('lua vim.lsp.buf.document_symbol()'), opts(noremap, silent) },
-  { '<Leader>gW', cmd('lua vim.lsp.buf.workspace_symbol()'), opts(noremap, silent) },
-  { '<Leader>ah', cmd('lua vim.lsp.buf.hover()'), opts(noremap, silent) },
-  { '<Leader>af', cmd('lua vim.lsp.buf.code_action()'), opts(noremap, silent) },
-  { '<Leader>ee', cmd('lua vim.lsp.util.show_line_diagnostics()'), opts(noremap, silent) },
-  { '<Leader>ar', cmd('lua vim.lsp.buf.rename()'), opts(noremap, silent) },
-  { '<Leader>=', cmd('lua vim.lsp.buf.formatting()'), opts(noremap, silent) },
-  { '<Leader>ai', cmd('lua vim.lsp.buf.incoming_calls()'), opts(noremap, silent) },
-  { '<Leader>ao', cmd('lua vim.lsp.buf.outgoing_calls()'), opts(noremap, silent) },
-})
+function lsp_keymaps()
+  return function()
+    nmap({
+      -- Displays hover information about the symbol under the cursor
+      { 'K', cmd('lua vim.lsp.buf.hover()'), opts(noremap, silent, buffer) },
+      -- Jump to the definition
+      { 'gd', cmd('lua vim.lsp.buf.definition()'), opts(noremap, silent, buffer) },
+      -- Jump to declaration
+      { 'gD', cmd('lua vim.lsp.buf.declaration()'), opts(noremap, silent, buffer) },
+      -- Lists all the implementations for the symbol under the cursor
+      { 'gi', cmd('lua vim.lsp.buf.implementation()'), opts(noremap, silent, buffer) },
+      -- Jumps to the definition of the type symbol
+      { 'go', cmd('lua vim.lsp.buf.type_definition()'), opts(noremap, silent, buffer) },
+      -- Lists all the references
+      { 'gr', cmd('lua vim.lsp.buf.references()'), opts(noremap, silent, buffer) },
+      -- Displays a function's signature information
+      { '<C-k>', cmd('lua vim.lsp.buf.signature_help()'), opts(noremap, silent, buffer) },
+      -- Renames all references to the symbol under the cursor
+      { '<F2>', cmd('lua vim.lsp.buf.rename()'), opts(noremap, silent, buffer) },
+      -- Selects a code action available at the current cursor position
+      { '<F4>', cmd('lua vim.lsp.buf.code_action()'), opts(noremap, silent, buffer) },
+      -- Show diagnostics in a floating window
+      { 'gl', cmd('lua vim.diagnostic.open_float()'), opts(noremap, silent, buffer) },
+      -- Move to the previous diagnostic
+      { '[d', cmd('lua vim.diagnostic.goto_prev()'), opts(noremap, silent, buffer) },
+      -- Move to the next diagnostic
+      { ']d', cmd('lua vim.diagnostic.goto_next()'), opts(noremap, silent, buffer) },
+      -- Format file
+      { '=', cmd('lua vim.lsp.buf.formatting()'), opts(noremap, silent, buffer) },
+
+      -- currently unused lsp mappings
+      -- { '<Leader>ee', cmd('lua vim.lsp.util.show_line_diagnostics()'), opts(noremap, silent, buffer) },
+      -- { '<Leader>gw', cmd('lua vim.lsp.buf.document_symbol()'), opts(noremap, silent) },
+      -- { '<Leader>gW', cmd('lua vim.lsp.buf.workspace_symbol()'), opts(noremap, silent) },
+      -- { '<Leader>ai', cmd('lua vim.lsp.buf.incoming_calls()'), opts(noremap, silent) },
+      -- { '<Leader>ao', cmd('lua vim.lsp.buf.outgoing_calls()'), opts(noremap, silent) },
+    })
+
+    xmap({
+      -- Selects a code action available at the selected lines
+      { '<F4>', cmd('lua vim.lsp.buf.range_code_action()'), opts(noremap, silent, buffer) },
+    })
+  end
+end
