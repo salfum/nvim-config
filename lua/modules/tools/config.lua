@@ -29,11 +29,11 @@ function config.telescope()
 end
 
 function config.gitsigns()
-  vim.highlight.create('GitSignsAdd', { guifg = '#C3E88D' }, false)
-  vim.highlight.create('GitSignsChange', { guifg = '#FFCB6B' }, false)
-  vim.highlight.create('GitSignsDelete', { guifg = '#F07178' }, false)
-
   require('gitsigns').setup()
+
+  vim.highlight.create('GitSignsAdd', { guifg = '#C3E88D', guibg = nil }, false)
+  vim.highlight.create('GitSignsChange', { guifg = '#FFCB6B', guibg = nil }, false)
+  vim.highlight.create('GitSignsDelete', { guifg = '#F07178', guibg = nil }, false)
 end
 
 return config
