@@ -25,7 +25,7 @@ lspconfig.util.default_config = vim.tbl_deep_extend(
 vim.api.nvim_create_autocmd('User', {
   pattern = 'LspAttached',
   desc = 'LSP actions',
-  callback = lsp_keymaps,
+  callback = lsp_keymaps(),
 })
 
 vim.cmd [[

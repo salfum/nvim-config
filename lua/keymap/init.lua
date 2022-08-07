@@ -26,31 +26,31 @@ function lsp_keymaps()
   return function()
     nmap({
       -- Displays hover information about the symbol under the cursor
-      { 'K', cmd('lua vim.lsp.buf.hover()'), opts(noremap, silent, buffer) },
+      { 'K', cmd('lua vim.lsp.buf.hover()'), opts(noremap, buffer) },
       -- Jump to the definition
-      { 'gd', cmd('lua vim.lsp.buf.definition()'), opts(noremap, silent, buffer) },
+      { 'gd', cmd('lua vim.lsp.buf.definition()'), opts(noremap, buffer) },
       -- Jump to declaration
-      { 'gD', cmd('lua vim.lsp.buf.declaration()'), opts(noremap, silent, buffer) },
+      { 'gD', cmd('lua vim.lsp.buf.declaration()'), opts(noremap, buffer) },
       -- Lists all the implementations for the symbol under the cursor
-      { 'gi', cmd('lua vim.lsp.buf.implementation()'), opts(noremap, silent, buffer) },
+      { 'gi', cmd('lua vim.lsp.buf.implementation()'), opts(noremap, buffer) },
       -- Jumps to the definition of the type symbol
-      { 'go', cmd('lua vim.lsp.buf.type_definition()'), opts(noremap, silent, buffer) },
+      { 'go', cmd('lua vim.lsp.buf.type_definition()'), opts(noremap, buffer) },
       -- Lists all the references
-      { 'gr', cmd('lua vim.lsp.buf.references()'), opts(noremap, silent, buffer) },
+      { 'gr', cmd('lua vim.lsp.buf.references()'), opts(noremap, buffer) },
       -- Displays a function's signature information
-      { '<C-k>', cmd('lua vim.lsp.buf.signature_help()'), opts(noremap, silent, buffer) },
+      { '<C-k>', cmd('lua vim.lsp.buf.signature_help()'), opts(noremap, buffer) },
       -- Renames all references to the symbol under the cursor
-      { '<F2>', cmd('lua vim.lsp.buf.rename()'), opts(noremap, silent, buffer) },
+      { '<F2>', cmd('lua vim.lsp.buf.rename()'), opts(noremap, buffer) },
       -- Selects a code action available at the current cursor position
-      { '<F4>', cmd('lua vim.lsp.buf.code_action()'), opts(noremap, silent, buffer) },
+      { '<F4>', cmd('lua vim.lsp.buf.code_action()'), opts(noremap, buffer) },
       -- Show diagnostics in a floating window
-      { 'gl', cmd('lua vim.diagnostic.open_float()'), opts(noremap, silent, buffer) },
+      { 'gl', cmd('lua vim.diagnostic.open_float()'), opts(noremap, buffer) },
       -- Move to the previous diagnostic
-      { '[d', cmd('lua vim.diagnostic.goto_prev()'), opts(noremap, silent, buffer) },
+      { '[d', cmd('lua vim.diagnostic.goto_prev()'), opts(noremap, buffer) },
       -- Move to the next diagnostic
-      { ']d', cmd('lua vim.diagnostic.goto_next()'), opts(noremap, silent, buffer) },
+      { ']d', cmd('lua vim.diagnostic.goto_next()'), opts(noremap, buffer) },
       -- Format file
-      { '=', cmd('lua vim.lsp.buf.formatting()'), opts(noremap, silent, buffer) },
+      { '=', cmd('lua vim.lsp.buf.formatting()'), opts(noremap, buffer) },
 
       -- currently unused lsp mappings
       -- { '<Leader>ee', cmd('lua vim.lsp.util.show_line_diagnostics()'), opts(noremap, silent, buffer) },
