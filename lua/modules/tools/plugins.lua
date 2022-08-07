@@ -16,3 +16,5 @@ plugin({
   'lewis6991/gitsigns.nvim',
   config = conf.gitsigns,
 })
+
+plugin({ 'mg979/vim-visual-multi' })
