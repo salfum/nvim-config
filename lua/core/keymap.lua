@@ -46,6 +46,12 @@ function keymap.nowait(opt)
   end
 end
 
+function keymap.buffer(opt)
+  return function()
+    opt.buffer = true
+  end
+end
+
 function keymap.new_opts(...)
   local args = { ... }
   local o = opts:new()
@@ -71,6 +77,15 @@ end
 -- visual
 function keymap.cu(str)
   return '<C-u><cmd>' .. str .. '<CR>'
+end
+
+-- usage example:
+--   lsp_command = format_cmd('<cmd>lua vim.lsp.%s<cr>')
+--   lsp_command 'buf.references()')
+function format_cmd(cmd)
+  return function(str)
+    return cmd:format(str)
+  end
 end
 
 --@private
