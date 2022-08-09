@@ -78,7 +78,9 @@ lspconfig.sumneko_lua.setup({
   }
 })
 
-local servers_with_default_settings = {}
+local servers_with_default_settings = {
+  'jsonls',
+}
 
 for _, server in ipairs(servers_with_default_settings) do
   lspconfig[server].setup({})

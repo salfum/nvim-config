@@ -29,11 +29,32 @@ function config.telescope()
 end
 
 function config.gitsigns()
-  require('gitsigns').setup()
+  require('gitsigns').setup {
+    signs = {
+      add = { hl = "GitSignsAdd", text = "▍", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+      change = { hl = "GitSignsChange", text = "▍", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+      delete = { hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
+      topdelete = { hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
+      changedelete = { hl = "GitSignsChange", text = "▍", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+    },
+    numhl = false,
+    linehl = false,
+    word_diff = false,
+    watch_gitdir = {
+      interval = 1000,
+      follow_files = true,
+    },
+  }
 
-  vim.highlight.create('GitSignsAdd', { guifg = '#C3E88D', guibg = nil }, false)
-  vim.highlight.create('GitSignsChange', { guifg = '#FFCB6B', guibg = nil }, false)
-  vim.highlight.create('GitSignsDelete', { guifg = '#F07178', guibg = nil }, false)
+  vim.highlight.create('GitSignsAdd', { guifg = '#5F782F', guibg = NONE }, false)
+  vim.highlight.create('GitSignsChange', { guifg = '#FFCB6B', guibg = NONE }, false)
+  vim.highlight.create('GitSignsDelete', { guifg = '#F07178', guibg = NONE }, false)
+end
+
+function config.hop()
+  require('hop').setup {}
+
+  vim.api.nvim_set_keymap('i', '<C-g>', "<cmd>HopWord<cr>", {})
 end
 
 return config

@@ -18,3 +18,9 @@ plugin({
 })
 
 plugin({ 'mg979/vim-visual-multi' })
+
+plugin({
+  'phaazon/hop.nvim',
+  branch = 'v2',
+  config = conf.hop,
+})
