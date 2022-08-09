@@ -10,3 +10,11 @@ plugin({
 })
 
 plugin({ 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' })
+plugin({ 'p00f/nvim-ts-rainbow', after = 'nvim-treesitter' })
+
+plugin({
+  'numToStr/Comment.nvim',
+  config = function()
+    require('Comment').setup()
+  end,
+})
