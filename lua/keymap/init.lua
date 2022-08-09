@@ -20,6 +20,8 @@ nmap({
   { '<Leader>b', cmd('Telescope buffers'), opts(noremap, silent) },
   { '<Leader>fg', cmd('Telescope live_grep'), opts(noremap, silent) },
   { '<Leader>ff', cmd('Telescope find_files'), opts(noremap, silent) },
+  { '<Leader>fr', cmd('Telescope oldfiles'), opts(noremap, silent) },
+  { '<Leader>fc', cmd('Telescope command_history'), opts(noremap, silent) },
 })
 
 function lsp_keymaps()
@@ -36,7 +38,7 @@ function lsp_keymaps()
       -- Jumps to the definition of the type symbol
       { 'go', cmd('lua vim.lsp.buf.type_definition()'), opts(noremap, buffer) },
       -- Lists all the references
-      { 'gr', cmd('lua vim.lsp.buf.references()'), opts(noremap, buffer) },
+      { 'gr', cmd('Telescope lsp_references'), opts(noremap, buffer) },
       -- Displays a function's signature information
       { '<C-k>', cmd('lua vim.lsp.buf.signature_help()'), opts(noremap, buffer) },
       -- Renames all references to the symbol under the cursor
