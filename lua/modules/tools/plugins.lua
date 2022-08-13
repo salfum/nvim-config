@@ -24,3 +24,18 @@ plugin({
   branch = 'v2',
   config = conf.hop,
 })
+
+plugin({
+  'echasnovski/mini.nvim',
+  branch = 'stable',
+  commit = '4cc8b445df6234bccfe3c3dbdbb3fe64cd3861c5',
+  config = conf.mini
+})
+
+plugin({
+  'kylechui/nvim-surround',
+  commit = '328f20c1d0e39ed30df3fc6334c093e8e8b72453',
+  config = function()
+    require("nvim-surround").setup {}
+  end
+})

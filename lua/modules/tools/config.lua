@@ -54,7 +54,14 @@ end
 function config.hop()
   require('hop').setup {}
 
+  vim.api.nvim_set_keymap('n', '<C-g>', "<cmd>HopWord<cr>", {})
   vim.api.nvim_set_keymap('i', '<C-g>', "<cmd>HopWord<cr>", {})
+end
+
+function config.mini()
+  require('mini.indentscope').setup {}
+
+  require('mini.cursorword').setup {}
 end
 
 return config
