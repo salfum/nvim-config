@@ -81,7 +81,7 @@ end
 
 -- usage example:
 --   lsp_command = format_cmd('<cmd>lua vim.lsp.%s<cr>')
---   lsp_command 'buf.references()')
+--   lsp_command('buf.references()')
 function format_cmd(cmd)
   return function(str)
     return cmd:format(str)

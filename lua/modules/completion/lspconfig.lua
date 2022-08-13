@@ -4,13 +4,17 @@ local lspconfig = require('lspconfig')
 require("mason").setup()
 require("mason-lspconfig").setup()
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = { 'documentation', 'detail', 'additionalTextEdits' },
+}
+
 local lsp_defaults = {
   flags = {
     debounce_text_changes = 150,
   },
-  capabilities = require('cmp_nvim_lsp').update_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-  ),
+  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities),
   on_attach = function(client, bufnr)
     vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
   end
@@ -73,7 +77,11 @@ lspconfig.sumneko_lua.setup({
       diagnostics = {
         globals = { 'hs', 'vim', 'it', 'describe', 'before_each', 'after_each' },
         disable = { 'lowercase-global', 'undefined-global', 'unused-local', 'unused-vararg', 'trailing-space' },
-      }
+      },
+      completion = {
+        keywordSnippet = 'Replace',
+        callSnippet = 'Replace',
+      },
     }
   }
 })
