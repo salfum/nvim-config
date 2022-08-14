@@ -2,6 +2,12 @@ local config = {}
 
 function config.toast()
   vim.cmd('colorscheme toast')
+
+  vim.cmd [[highlight StatusLine cterm=reverse ctermfg=242 ctermbg=242 gui=reverse guifg=#202328 guibg=#202328]]
+
+  vim.cmd [[highlight GitSignsAdd ctermbg=0 guifg=#5F782F guibg=NONE]]
+  vim.cmd [[highlight GitSignsChange ctermbg=0 guifg=#FFCB6B guibg=NONE]]
+  vim.cmd [[highlight GitSignsDelete ctermbg=0 guifg=#F07178 guibg=NONE]]
 end
 
 function config.galaxyline()
@@ -18,16 +24,16 @@ function config.dashboard()
   db.preview_file_width = 80
   db.custom_center = {
     {
-      icon = '  ',
-      desc = 'Update Plugins                          ',
-      shortcut = 'SPC p u',
-      action = 'PackerUpdate',
-    },
-    {
       icon = '  ',
       desc = 'Find  File                              ',
       action = 'Telescope find_files find_command=rg,--hidden,--files',
       shortcut = 'SPC f f',
+    },
+    {
+      icon = '  ',
+      desc = 'Sync Plugins                            ',
+      shortcut = 'SPC p u',
+      action = 'PackerSync',
     },
   }
 end
@@ -38,6 +44,16 @@ function config.nvim_bufferline()
       modified_icon = '✥',
       buffer_close_icon = '',
       always_show_bufferline = false,
+      offsets = {
+        {
+          filetype = "NvimTree",
+          text = function()
+            return vim.fn.getcwd()
+          end,
+          highlight = "Directory",
+          text_align = "left"
+        },
+      },
     },
   })
 end
