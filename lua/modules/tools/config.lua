@@ -45,10 +45,6 @@ function config.gitsigns()
       follow_files = true,
     },
   }
-
-  vim.highlight.create('GitSignsAdd', { guifg = '#5F782F', guibg = NONE }, false)
-  vim.highlight.create('GitSignsChange', { guifg = '#FFCB6B', guibg = NONE }, false)
-  vim.highlight.create('GitSignsDelete', { guifg = '#F07178', guibg = NONE }, false)
 end
 
 function config.hop()
@@ -62,6 +58,15 @@ function config.mini()
   require('mini.indentscope').setup {}
 
   require('mini.cursorword').setup {}
+end
+
+function config.cinnamon()
+  require('cinnamon').setup({
+    default_keymaps = true,
+    extra_keymaps = true,
+    extended_keymaps = true,
+    override_keymaps = true,
+  })
 end
 
 return config

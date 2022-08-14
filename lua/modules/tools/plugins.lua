@@ -29,7 +29,7 @@ plugin({
   'echasnovski/mini.nvim',
   branch = 'stable',
   commit = '4cc8b445df6234bccfe3c3dbdbb3fe64cd3861c5',
-  config = conf.mini
+  config = conf.mini,
 })
 
 plugin({
@@ -37,5 +37,27 @@ plugin({
   commit = '328f20c1d0e39ed30df3fc6334c093e8e8b72453',
   config = function()
     require("nvim-surround").setup {}
-  end
+  end,
+})
+
+if vim.g.python3_host_prog then
+  plugin({
+    'dinhhuy258/vim-local-history',
+    branch = 'master',
+    run = ':UpdateRemotePlugins',
+    config = function()
+      vim.g.local_history_path = os.getenv('HOME') .. '/.local-history'
+      vim.g.local_history_max_changes = 200
+      vim.local_history_exclude = {
+        '**/node_modules/**',
+        '**/deps/**',
+        '*.txt',
+      }
+    end
+  })
+end
+
+plugin({
+  'declancm/cinnamon.nvim',
+  config = conf.cinnamon,
 })
