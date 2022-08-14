@@ -31,6 +31,7 @@ nmap({
 imap({
   { '<C-s>', cmd('write'), opts(noremap) },
   { '<C-h>', '<Bs>', opts(noremap) },
+  { '<C-l>', '<Del>', opts(noremap) },
   { '<C-e>', '<End>', opts(noremap) },
   { '<C-a>', '<Home>', opts(noremap) },
   -- quick escape from insert mode

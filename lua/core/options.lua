@@ -101,10 +101,15 @@ opt.textwidth = 80
 opt.undofile = true
 opt.wrap = false
 
+-- clients and plugin hosts settings
 vim.g.python2 = '/usr/bin/python2'
 vim.g.python3 = '/usr/bin/python3'
 vim.g.python_host_prog = '/usr/bin/python2'
 vim.g.python3_host_prog = '/usr/bin/python3'
+
+vim.g.loaded_node_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
 
 -- Remembers the last cursor position in a file
 vim.cmd [[
@@ -118,4 +123,3 @@ vim.api.nvim_exec([[
     autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
     augroup end
 ]], false)
-
