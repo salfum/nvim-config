@@ -18,7 +18,7 @@ opt.fileformats = 'unix,mac,dos'
 opt.foldlevelstart = 99
 opt.grepformat = '%f:%l:%c:%m'
 opt.grepprg = 'rg --hidden --vimgrep --smart-case --'
-opt.guifont = { "FiraCode Nerd Font Mono", ":h14" }
+opt.guifont = { 'FiraCode Nerd Font Mono', ':h14' }
 opt.helpheight = 12
 opt.hidden = true
 opt.history = 2000
@@ -64,7 +64,8 @@ opt.viewoptions = 'folds,cursor,curdir,slash,unix'
 opt.virtualedit = 'block'
 opt.visualbell = true
 opt.whichwrap = 'h,l,<,>,[,],~'
-opt.wildignore = '.git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**'
+opt.wildignore =
+  '.git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**'
 opt.wildignorecase = true
 opt.winminwidth = 10
 opt.winwidth = 30
@@ -112,14 +113,17 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 
 -- Remembers the last cursor position in a file
-vim.cmd [[
+vim.cmd([[
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-]]
+]])
 
 -- Highlights the copied part of the text for a fraction of a second
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+  [[
     augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
     augroup end
-]], false)
+  ]],
+  false
+)

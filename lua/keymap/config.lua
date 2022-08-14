@@ -35,7 +35,7 @@ imap({
   { '<C-e>', '<End>', opts(noremap) },
   { '<C-a>', '<Home>', opts(noremap) },
   -- quick escape from insert mode
-  { 'jj', '<Esc>', opts(noremap) }
+  { 'jj', '<Esc>', opts(noremap) },
 })
 
 cmap({

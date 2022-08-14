@@ -36,7 +36,7 @@ plugin({
   'kylechui/nvim-surround',
   commit = '328f20c1d0e39ed30df3fc6334c093e8e8b72453',
   config = function()
-    require("nvim-surround").setup {}
+    require('nvim-surround').setup({})
   end,
 })
 
@@ -53,7 +53,7 @@ if vim.g.python3_host_prog then
         '**/deps/**',
         '*.txt',
       }
-    end
+    end,
   })
 end
 

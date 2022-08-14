@@ -38,13 +38,13 @@ function Packer:load_packer()
     git = { clone_timeout = 120 },
     disable_commands = true,
     display = {
-      working_sym = "ﲊ",
-      error_sym = "✗ ",
-      done_sym = " ",
-      removed_sym = " ",
-      moved_sym = "",
+      working_sym = 'ﲊ',
+      error_sym = '✗ ',
+      done_sym = ' ',
+      removed_sym = ' ',
+      moved_sym = '',
       open_fn = function()
-        return require("packer.util").float { border = "single" }
+        return require('packer.util').float({ border = 'single' })
       end,
     },
   })

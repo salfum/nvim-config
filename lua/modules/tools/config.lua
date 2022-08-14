@@ -29,13 +29,13 @@ function config.telescope()
 end
 
 function config.gitsigns()
-  require('gitsigns').setup {
+  require('gitsigns').setup({
     signs = {
-      add = { hl = "GitSignsAdd", text = "▍", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-      change = { hl = "GitSignsChange", text = "▍", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-      delete = { hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-      topdelete = { hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-      changedelete = { hl = "GitSignsChange", text = "▍", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+      add = { hl = 'GitSignsAdd', text = '▍', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
+      change = { hl = 'GitSignsChange', text = '▍', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+      delete = { hl = 'GitSignsDelete', text = '契', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+      topdelete = { hl = 'GitSignsDelete', text = '契', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+      changedelete = { hl = 'GitSignsChange', text = '▍', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
     },
     numhl = false,
     linehl = false,
@@ -44,20 +44,20 @@ function config.gitsigns()
       interval = 1000,
       follow_files = true,
     },
-  }
+  })
 end
 
 function config.hop()
-  require('hop').setup {}
+  require('hop').setup({})
 
-  vim.api.nvim_set_keymap('n', '<C-g>', "<cmd>HopWord<cr>", {})
-  vim.api.nvim_set_keymap('i', '<C-g>', "<cmd>HopWord<cr>", {})
+  vim.api.nvim_set_keymap('n', '<C-g>', '<cmd>HopWord<cr>', {})
+  vim.api.nvim_set_keymap('i', '<C-g>', '<cmd>HopWord<cr>', {})
 end
 
 function config.mini()
-  require('mini.indentscope').setup {}
+  require('mini.indentscope').setup({})
 
-  require('mini.cursorword').setup {}
+  require('mini.cursorword').setup({})
 end
 
 function config.cinnamon()

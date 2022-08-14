@@ -1,8 +1,8 @@
 local home = os.getenv('HOME')
 local lspconfig = require('lspconfig')
 
-require("mason").setup()
-require("mason-lspconfig").setup()
+require('mason').setup()
+require('mason-lspconfig').setup()
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -10,21 +10,33 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = { 'documentation', 'detail', 'additionalTextEdits' },
 }
 
+local function Set(list)
+  local set = {}
+  for _, l in ipairs(list) do
+    set[l] = true
+  end
+  return set
+end
+
+local disabled_formatting_servers = Set({
+  'sumneko_lua',
+})
+
 local lsp_defaults = {
   flags = {
     debounce_text_changes = 150,
   },
   capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities),
   on_attach = function(client, bufnr)
+    if disabled_formatting_servers[client.name] then
+      client.resolved_capabilities.document_formatting = false
+    end
+
     vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
-  end
+  end,
 }
 
-lspconfig.util.default_config = vim.tbl_deep_extend(
-  'force',
-  lspconfig.util.default_config,
-  lsp_defaults
-)
+lspconfig.util.default_config = vim.tbl_deep_extend('force', lspconfig.util.default_config, lsp_defaults)
 
 vim.api.nvim_create_autocmd('User', {
   pattern = 'LspAttached',
@@ -32,9 +44,9 @@ vim.api.nvim_create_autocmd('User', {
   callback = lsp_keymaps(),
 })
 
-vim.cmd [[
+vim.cmd([[
     autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)
-]]
+]])
 
 -- diagnostic config
 
@@ -54,7 +66,7 @@ local signs = {
 }
 
 for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
+  local hl = 'DiagnosticSign' .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
@@ -67,8 +79,8 @@ lspconfig.elixirls.setup({
       fetchDeps = false,
       enableTestLenses = false,
       suggestSpecs = false,
-    }
-  }
+    },
+  },
 })
 
 lspconfig.sumneko_lua.setup({
@@ -82,8 +94,8 @@ lspconfig.sumneko_lua.setup({
         keywordSnippet = 'Replace',
         callSnippet = 'Replace',
       },
-    }
-  }
+    },
+  },
 })
 
 local servers_with_default_settings = {
