@@ -127,3 +127,15 @@ vim.api.nvim_exec(
   ]],
   false
 )
+
+-- automatic toggle relative numbers between modes
+vim.api.nvim_exec(
+  [[
+    augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+    augroup end
+  ]],
+  false
+)
