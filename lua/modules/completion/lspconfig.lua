@@ -1,5 +1,6 @@
 local home = os.getenv('HOME')
 local lspconfig = require('lspconfig')
+local List = require('plenary.collections.py_list')
 
 require('mason').setup()
 require('mason-lspconfig').setup()
@@ -10,15 +11,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = { 'documentation', 'detail', 'additionalTextEdits' },
 }
 
-local function Set(list)
-  local set = {}
-  for _, l in ipairs(list) do
-    set[l] = true
-  end
-  return set
-end
-
-local disabled_formatting_servers = Set({
+local disabled_formatting_servers = List({
   'sumneko_lua',
 })
 
@@ -28,7 +21,7 @@ local lsp_defaults = {
   },
   capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities),
   on_attach = function(client, bufnr)
-    if disabled_formatting_servers[client.name] then
+    if disabled_formatting_servers:contains(client.name) then
       client.resolved_capabilities.document_formatting = false
     end
 
