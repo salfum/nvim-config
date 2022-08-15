@@ -22,7 +22,7 @@ function config.null_ls()
       formatting.stylua,
       formatting.json_tool,
 
-      diagnostics.credo,
+      -- diagnostics.credo,
 
       code_actions.gitsigns,
 

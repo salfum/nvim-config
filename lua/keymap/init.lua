@@ -23,6 +23,7 @@ nmap({
   { '<Leader>ff', cmd('Telescope find_files'), opts(noremap, silent) },
   { '<Leader>fr', cmd('Telescope oldfiles'), opts(noremap, silent) },
   { '<Leader>fc', cmd('Telescope command_history'), opts(noremap, silent) },
+  { '<Leader>fw', cmd('Telescope grep_string'), opts(noremap, silent) },
   { '<F5>', cmd('LocalHistoryToggle'), opts(noremap, silent) },
 })
 

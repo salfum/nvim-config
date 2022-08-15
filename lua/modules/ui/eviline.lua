@@ -123,6 +123,33 @@ gls.left[11] = {
   },
 }
 
+function get_client_names()
+  local bufnr = vim.fn.bufnr('')
+  local clients = vim.lsp.buf_get_clients(bufnr)
+  local clientnames_tbl = {}
+
+  for _, v in pairs(clients) do
+    if v.name then
+      table.insert(clientnames_tbl, v.name)
+    end
+  end
+
+  return table.concat(clientnames_tbl, ',')
+end
+
+local lsp_text_provider = function()
+  local bufnr = vim.fn.bufnr('')
+  local clients = vim.lsp.buf_get_clients(bufnr)
+
+  if vim.tbl_isempty(clients) then
+    return ''
+  end
+
+  local names = get_client_names()
+
+  return names
+end
+
 gls.mid[1] = {
   ShowLspClient = {
     condition = function()
@@ -134,7 +161,9 @@ gls.mid[1] = {
     end,
     highlight = { colors.yellow, colors.bg, 'bold' },
     icon = ' LSP:',
-    provider = 'GetLspClient',
+    provider = function()
+      return lsp_text_provider()
+    end,
   },
 }
 
