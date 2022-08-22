@@ -31,4 +31,8 @@ function config.nvim_treesitter()
   })
 end
 
+function config.treesitter_context()
+  require('treesitter-context').setup({})
+end
+
 return config

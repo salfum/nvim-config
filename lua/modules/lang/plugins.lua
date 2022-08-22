@@ -11,6 +11,11 @@ plugin({
 
 plugin({ 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' })
 plugin({ 'salfum/nvim-ts-rainbow', after = 'nvim-treesitter' })
+plugin({
+  'salfum/nvim-treesitter-context',
+  after = 'nvim-treesitter',
+  config = conf.treesitter_context,
+})
 
 plugin({
   'numToStr/Comment.nvim',
