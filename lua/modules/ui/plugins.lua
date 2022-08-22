@@ -20,3 +20,10 @@ plugin({
 })
 
 plugin({ 'akinsho/nvim-bufferline.lua', config = conf.nvim_bufferline, requires = 'kyazdani42/nvim-web-devicons' })
+
+plugin({
+  'j-hui/fidget.nvim',
+  config = function()
+    require('fidget').setup({})
+  end,
+})
