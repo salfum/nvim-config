@@ -1,6 +1,6 @@
 require('keymap.config')
 local keymap = require('core.keymap')
-local nmap, xmap = keymap.nmap, keymap.xmap
+local nmap, imap, xmap = keymap.nmap, keymap.imap, keymap.xmap
 local silent, noremap, buffer = keymap.silent, keymap.noremap, keymap.buffer
 local opts = keymap.new_opts
 local cmd = keymap.cmd
@@ -26,6 +26,9 @@ nmap({
   { '<Leader>fw', cmd('Telescope grep_string'), opts(noremap, silent) },
   { '<F5>', cmd('LocalHistoryToggle'), opts(noremap, silent) },
 })
+
+nmap({ '<C-g>', cmd("lua require('leap').leap { target_windows = { vim.fn.win_getid() } }"), opts(noremap) })
+imap({ '<C-g>', cmd("lua require('leap').leap { target_windows = { vim.fn.win_getid() } }"), opts(noremap) })
 
 function lsp_keymaps()
   return function()
@@ -65,9 +68,9 @@ function lsp_keymaps()
       -- { '<Leader>ao', cmd('lua vim.lsp.buf.outgoing_calls()'), opts(noremap, silent) },
     })
 
-    xmap({
+    xmap(
       -- Selects a code action available at the selected lines
-      { '<F4>', cmd('lua vim.lsp.buf.range_code_action()'), opts(noremap, silent, buffer) },
-    })
+      { '<F4>', cmd('lua vim.lsp.buf.range_code_action()'), opts(noremap, silent, buffer) }
+    )
   end
 end

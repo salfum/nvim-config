@@ -1,6 +1,8 @@
 local plugin = require('core.pack').register_plugin
 local conf = require('modules.tools.config')
 
+plugin({ 'lewis6991/impatient.nvim' })
+
 plugin({
   'nvim-telescope/telescope.nvim',
   cmd = 'Telescope',
@@ -20,9 +22,10 @@ plugin({
 plugin({ 'mg979/vim-visual-multi' })
 
 plugin({
-  'phaazon/hop.nvim',
-  branch = 'v2',
-  config = conf.hop,
+  'ggandor/leap.nvim',
+  config = function()
+    require('leap').set_default_keymaps()
+  end,
 })
 
 plugin({
