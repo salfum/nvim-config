@@ -64,3 +64,10 @@ plugin({
   'declancm/cinnamon.nvim',
   config = conf.cinnamon,
 })
+
+plugin({
+  'ahmedkhalf/project.nvim',
+  config = function()
+    require('project_nvim').setup({})
+  end,
+})

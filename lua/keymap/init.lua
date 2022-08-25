@@ -25,6 +25,8 @@ nmap({
   { '<Leader>fc', cmd('Telescope command_history'), opts(noremap, silent) },
   { '<Leader>fw', cmd('Telescope grep_string'), opts(noremap, silent) },
   { '<F5>', cmd('LocalHistoryToggle'), opts(noremap, silent) },
+  -- project.nvim
+  { '<leader>p', cmd('Telescope projects'), opts(noremap, silent) },
 })
 
 nmap({ '<C-g>', cmd("lua require('leap').leap { target_windows = { vim.fn.win_getid() } }"), opts(noremap) })
