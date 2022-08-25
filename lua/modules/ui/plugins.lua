@@ -27,3 +27,10 @@ plugin({
     require('fidget').setup({})
   end,
 })
+
+plugin({
+  'salfum/satellite.nvim',
+  config = function()
+    require('satellite').setup()
+  end,
+})
