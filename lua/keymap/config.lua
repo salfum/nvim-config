@@ -1,6 +1,6 @@
 local keymap = require('core.keymap')
 local nmap, imap, cmap, vmap, xmap = keymap.nmap, keymap.imap, keymap.cmap, keymap.vmap, keymap.xmap
-local silent, noremap = keymap.silent, keymap.noremap
+local silent, noremap, expr = keymap.silent, keymap.noremap, keymap.expr
 local opts = keymap.new_opts
 local cmd = keymap.cmd
 
@@ -9,15 +9,16 @@ vim.g.mapleader = ' '
 nmap({ ' ', '', opts(noremap) })
 xmap({ ' ', '', opts(noremap) })
 
-vmap({ '<S-Y>', '"+y', opts(noremap) })
+vmap({
+  { '<S-Y>', '"+y', opts(noremap) },
+  { 'p', cmd('p:let @+=@0<CR>:let @"=@0<CR>'), opts(silent) },
+})
 
 nmap({
-  -- close buffer
-  { '<C-w>', cmd('bdelete'), opts(noremap, silent) },
-  -- save
-  { '<C-s>', cmd('write'), opts(noremap) },
-  -- yank
-  { 'Y', 'y$', opts(noremap) },
+  { '<C-w>', cmd('bdelete'), opts(noremap, silent) }, -- close buffer
+  { '<C-s>', cmd('write'), opts(noremap) }, -- save
+  { 'Y', 'y$', opts(noremap) }, -- yank
+  { '<Escape>', cmd('noh'), opts(noremap) }, -- no highlight
   -- buffer jump
   { ']b', cmd('bn'), opts(noremap) },
   { '[b', cmd('bp'), opts(noremap) },
@@ -29,13 +30,12 @@ nmap({
 })
 
 imap({
-  { '<C-s>', cmd('write'), opts(noremap) },
+  { 'jj', '<Esc>', opts(noremap) }, -- quick escape from insert mode
+  { '<C-s>', cmd('write'), opts(noremap) }, -- save file
   { '<C-h>', '<Bs>', opts(noremap) },
   { '<C-l>', '<Del>', opts(noremap) },
   { '<C-e>', '<End>', opts(noremap) },
   { '<C-a>', '<Home>', opts(noremap) },
-  -- quick escape from insert mode
-  { 'jj', '<Esc>', opts(noremap) },
 })
 
 cmap({
@@ -46,4 +46,10 @@ cmap({
 nmap({
   { '<Tab>', cmd('bnext') },
   { '<S-Tab>', cmd('bprevious') },
+  -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
+  -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
+  { 'j', cmd('v:count || mode(1)[0:1] == "no" ? "j" : "gj"'), opts(expr) },
+  { 'Down', cmd('v:count || mode(1)[0:1] == "no" ? "j" : "gj"'), opts(expr) },
+  { 'k', cmd('v:count || mode(1)[0:1] == "no" ? "j" : "gk"'), opts(expr) },
+  { 'Up', cmd('v:count || mode(1)[0:1] == "no" ? "j" : "gk"'), opts(expr) },
 })

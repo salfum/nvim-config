@@ -1,6 +1,6 @@
 require('keymap.config')
 local keymap = require('core.keymap')
-local nmap, imap, xmap = keymap.nmap, keymap.imap, keymap.xmap
+local nmap, imap, vmap, xmap = keymap.nmap, keymap.imap, keymap.vmap, keymap.xmap
 local silent, noremap, buffer = keymap.silent, keymap.noremap, keymap.buffer
 local opts = keymap.new_opts
 local cmd = keymap.cmd
@@ -27,7 +27,14 @@ nmap({
   { '<F5>', cmd('LocalHistoryToggle'), opts(noremap, silent) },
   -- project.nvim
   { '<leader>p', cmd('Telescope projects'), opts(noremap, silent) },
+  -- Comment.nvim
+  { '<leader>/', cmd('lua require("Comment.api").toggle.linewise.current()'), opts(silent) },
 })
+
+vmap(
+  -- Comment.nvim
+  { '<leader>/', "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts(silent) }
+)
 
 nmap({ '<C-g>', cmd("lua require('leap').leap { target_windows = { vim.fn.win_getid() } }"), opts(noremap) })
 imap({ '<C-g>', cmd("lua require('leap').leap { target_windows = { vim.fn.win_getid() } }"), opts(noremap) })
