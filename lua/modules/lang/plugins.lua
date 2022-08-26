@@ -23,3 +23,11 @@ plugin({
     require('Comment').setup()
   end,
 })
+
+plugin({
+  'antoinemadec/FixCursorHold.nvim',
+  event = 'BufReadPre',
+  config = function()
+    vim.g.cursorhold_updatetime = 100
+  end,
+})
