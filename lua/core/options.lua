@@ -1,5 +1,12 @@
 local cache_dir = os.getenv('HOME') .. '/.cache/nvim/'
 local opt = vim.opt
+local vim_version = vim.version().minor
+
+-- use filetype.lua instead of filetype.vim. it's enabled by default in neovim 0.8 (nightly)
+if vim_version < 8 then
+  vim.g.did_load_filetypes = 0
+  vim.g.do_filetype_lua = 1
+end
 
 opt.backspace = { 'indent', 'eol', 'start' }
 opt.backup = false
@@ -55,6 +62,7 @@ opt.switchbuf = 'useopen'
 opt.termguicolors = true
 opt.timeout = true
 opt.timeoutlen = 500
+opt.title = true
 opt.ttimeout = true
 opt.ttimeoutlen = 10
 opt.undodir = cache_dir .. 'undo/'
@@ -128,7 +136,7 @@ vim.api.nvim_exec(
   false
 )
 
--- automatic toggle relative numbers between modes
+-- Automatic toggle relative numbers between modes
 vim.api.nvim_exec(
   [[
     augroup numbertoggle
