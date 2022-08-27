@@ -1,12 +1,13 @@
 local plugin = require('core.pack').register_plugin
-local conf = require('modules.lang.config')
 
 plugin({
   'nvim-treesitter/nvim-treesitter',
   event = 'BufRead',
   run = ':TSUpdate',
   after = 'telescope.nvim',
-  config = conf.nvim_treesitter,
+  config = function()
+    require('modules.lang.configs.nvim-treesitter')
+  end,
 })
 
 plugin({ 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' })
@@ -14,20 +15,14 @@ plugin({ 'salfum/nvim-ts-rainbow', after = 'nvim-treesitter' })
 plugin({
   'salfum/nvim-treesitter-context',
   after = 'nvim-treesitter',
-  config = conf.treesitter_context,
+  config = function()
+    require('modules.lang.configs.nvim-treesitter-context')
+  end,
 })
 
 plugin({
   'numToStr/Comment.nvim',
   config = function()
-    require('Comment').setup()
-  end,
-})
-
-plugin({
-  'antoinemadec/FixCursorHold.nvim',
-  event = 'BufReadPre',
-  config = function()
-    vim.g.cursorhold_updatetime = 100
+    require('modules.lang.configs.comment')
   end,
 })

@@ -1,5 +1,4 @@
 local plugin = require('core.pack').register_plugin
-local conf = require('modules.completion.config')
 
 enabled_lsp_filetypes = {
   'elixir',
@@ -12,7 +11,9 @@ enabled_lsp_filetypes = {
 plugin({
   'neovim/nvim-lspconfig',
   ft = enabled_lsp_filetypes,
-  config = conf.nvim_lsp,
+  config = function()
+    require('modules.completion.configs.nvim-lspconfig')
+  end,
   requires = {
     -- LSP support
     { 'williamboman/mason.nvim' },
@@ -22,7 +23,9 @@ plugin({
     {
       'hrsh7th/nvim-cmp',
       event = 'BufReadPre',
-      config = conf.nvim_cmp,
+      config = function()
+        require('modules.completion.configs.nvim-cmp')
+      end,
       after = 'nvim-lspconfig',
     },
     { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
@@ -35,7 +38,9 @@ plugin({
     {
       'L3MON4D3/LuaSnip',
       event = 'InsertEnter',
-      config = conf.lua_snip,
+      config = function()
+        require('modules.completion.configs.luasnip')
+      end,
     },
     { 'rafamadriz/friendly-snippets' },
   },
@@ -46,7 +51,15 @@ plugin({
   requires = {
     'nvim-lua/plenary.nvim',
   },
-  config = conf.null_ls,
+  config = function()
+    require('modules.completion.configs.null-ls')
+  end,
 })
 
-plugin({ 'windwp/nvim-autopairs', event = 'InsertEnter', config = conf.autopairs })
+plugin({
+  'windwp/nvim-autopairs',
+  event = 'InsertEnter',
+  config = function()
+    require('modules.completion.configs.nvim-autopairs')
+  end,
+})

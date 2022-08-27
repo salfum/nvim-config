@@ -1,36 +1,63 @@
 local plugin = require('core.pack').register_plugin
-local conf = require('modules.ui.config')
 
-plugin({ 'jsit/toast.vim', config = conf.toast })
+plugin({
+  'jsit/toast.vim',
+  config = function()
+    require('modules.ui.configs.toast')
+  end,
+})
 
-plugin({ 'glepnir/dashboard-nvim', config = conf.dashboard })
+plugin({
+  'glepnir/dashboard-nvim',
+  config = function()
+    require('modules.ui.configs.dashboard-nvim')
+  end,
+})
 
 plugin({
   'glepnir/galaxyline.nvim',
   branch = 'main',
-  config = conf.galaxyline,
+  config = function()
+    require('modules.ui.configs.galaxyline')
+  end,
   requires = 'kyazdani42/nvim-web-devicons',
 })
 
 plugin({
   'kyazdani42/nvim-tree.lua',
   cmd = 'NvimTreeToggle',
-  config = conf.nvim_tree,
+  config = function()
+    require('modules.ui.configs.nvim-tree')
+  end,
   requires = 'kyazdani42/nvim-web-devicons',
 })
 
-plugin({ 'akinsho/nvim-bufferline.lua', config = conf.nvim_bufferline, requires = 'kyazdani42/nvim-web-devicons' })
+plugin({
+  'akinsho/nvim-bufferline.lua',
+  config = function()
+    require('modules.ui.configs.nvim-bufferline')
+  end,
+  requires = 'kyazdani42/nvim-web-devicons',
+})
 
 plugin({
   'j-hui/fidget.nvim',
   config = function()
-    require('fidget').setup({})
+    require('modules.ui.configs.fidget')
   end,
 })
 
 plugin({
   'salfum/satellite.nvim',
   config = function()
-    require('satellite').setup()
+    require('modules.ui.configs.satellite')
+  end,
+})
+
+plugin({
+  'antoinemadec/FixCursorHold.nvim',
+  event = 'BufReadPre',
+  config = function()
+    require('modules.ui.configs.fixcursorhold')
   end,
 })
