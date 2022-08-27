@@ -4,8 +4,6 @@ enabled_lsp_filetypes = {
   'elixir',
   'lua',
   'rust',
-  'c',
-  'cpp',
 }
 
 plugin({
@@ -39,7 +37,7 @@ plugin({
       'L3MON4D3/LuaSnip',
       event = 'InsertEnter',
       config = function()
-        require('modules.completion.configs.luasnip')
+        require('modules.completion.configs.LuaSnip')
       end,
     },
     { 'rafamadriz/friendly-snippets' },
@@ -48,6 +46,7 @@ plugin({
 
 plugin({
   'jose-elias-alvarez/null-ls.nvim',
+  commit = '753ad51790a966b42997ac935e26573fb6d5864a',
   requires = {
     'nvim-lua/plenary.nvim',
   },
@@ -58,6 +57,7 @@ plugin({
 
 plugin({
   'windwp/nvim-autopairs',
+  commit = '0a18e10a0c3fde190437567e40557dcdbbc89ea1',
   event = 'InsertEnter',
   config = function()
     require('modules.completion.configs.nvim-autopairs')

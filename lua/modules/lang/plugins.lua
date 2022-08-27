@@ -22,6 +22,7 @@ plugin({
 
 plugin({
   'numToStr/Comment.nvim',
+  commit = '80e7746e42fa685077a7941e9022308c7ad6adf8',
   config = function()
     require('modules.lang.configs.comment')
   end,
