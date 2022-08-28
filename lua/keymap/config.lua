@@ -46,10 +46,4 @@ cmap({
 nmap({
   { '<Tab>', cmd('bnext') },
   { '<S-Tab>', cmd('bprevious') },
-  -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
-  -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
-  { 'j', cmd('v:count || mode(1)[0:1] == "no" ? "j" : "gj"'), opts(expr) },
-  { 'Down', cmd('v:count || mode(1)[0:1] == "no" ? "j" : "gj"'), opts(expr) },
-  { 'k', cmd('v:count || mode(1)[0:1] == "no" ? "j" : "gk"'), opts(expr) },
-  { 'Up', cmd('v:count || mode(1)[0:1] == "no" ? "j" : "gk"'), opts(expr) },
 })

@@ -22,7 +22,7 @@ nmap({
   { '<Leader>fg', cmd('Telescope live_grep'), opts(noremap, silent) },
   { '<Leader>ff', cmd('Telescope find_files'), opts(noremap, silent) },
   { '<Leader>fr', cmd('Telescope oldfiles'), opts(noremap, silent) },
-  { '<Leader>fc', cmd('Telescope command_history'), opts(noremap, silent) },
+  { '<Leader>fh', cmd('Telescope command_history'), opts(noremap, silent) },
   { '<Leader>fw', cmd('Telescope grep_string'), opts(noremap, silent) },
   { '<Leader>fz', cmd('Telescope zoxide list'), opts(noremap, silent) },
   { '<Leader>fc', cmd('Telescope neoclip a extra=star,plus,b'), opts(noremap, silent) },
@@ -41,47 +41,45 @@ vmap(
 nmap({ '<C-g>', cmd("lua require('leap').leap { target_windows = { vim.fn.win_getid() } }"), opts(noremap) })
 imap({ '<C-g>', cmd("lua require('leap').leap { target_windows = { vim.fn.win_getid() } }"), opts(noremap) })
 
-function lsp_keymaps()
-  return function()
-    nmap({
-      -- Displays hover information about the symbol under the cursor
-      { 'K', cmd('lua vim.lsp.buf.hover()'), opts(noremap, buffer) },
-      -- Jump to the definition
-      { 'gd', cmd('lua vim.lsp.buf.definition()'), opts(noremap, buffer) },
-      -- Jump to declaration
-      { 'gD', cmd('lua vim.lsp.buf.declaration()'), opts(noremap, buffer) },
-      -- Lists all the implementations for the symbol under the cursor
-      { 'gi', cmd('lua vim.lsp.buf.implementation()'), opts(noremap, buffer) },
-      -- Jumps to the definition of the type symbol
-      { 'go', cmd('lua vim.lsp.buf.type_definition()'), opts(noremap, buffer) },
-      -- Lists all the references
-      { 'gr', cmd('Telescope lsp_references'), opts(noremap, buffer) },
-      -- Displays a function's signature information
-      { '<C-k>', cmd('lua vim.lsp.buf.signature_help()'), opts(noremap, buffer) },
-      -- Renames all references to the symbol under the cursor
-      { '<F2>', cmd('lua vim.lsp.buf.rename()'), opts(noremap, buffer) },
-      -- Selects a code action available at the current cursor position
-      { '<F4>', cmd('lua vim.lsp.buf.code_action()'), opts(noremap, buffer) },
-      -- Show diagnostics in a floating window
-      { 'gl', cmd('lua vim.diagnostic.open_float()'), opts(noremap, buffer) },
-      -- Move to the previous diagnostic
-      { '[d', cmd('lua vim.diagnostic.goto_prev()'), opts(noremap, buffer) },
-      -- Move to the next diagnostic
-      { ']d', cmd('lua vim.diagnostic.goto_next()'), opts(noremap, buffer) },
-      -- Format file
-      { '=', cmd('lua vim.lsp.buf.formatting()'), opts(noremap, buffer) },
+lsp_keymaps = function()
+  nmap({
+    -- Displays hover information about the symbol under the cursor
+    { 'K', cmd('lua vim.lsp.buf.hover()'), opts(noremap, buffer) },
+    -- Jump to the definition
+    { 'gd', cmd('lua vim.lsp.buf.definition()'), opts(noremap, buffer) },
+    -- Jump to declaration
+    { 'gD', cmd('lua vim.lsp.buf.declaration()'), opts(noremap, buffer) },
+    -- Lists all the implementations for the symbol under the cursor
+    { 'gi', cmd('lua vim.lsp.buf.implementation()'), opts(noremap, buffer) },
+    -- Jumps to the definition of the type symbol
+    { 'go', cmd('lua vim.lsp.buf.type_definition()'), opts(noremap, buffer) },
+    -- Lists all the references
+    { 'gr', cmd('Telescope lsp_references'), opts(noremap, buffer) },
+    -- Displays a function's signature information
+    { '<C-k>', cmd('lua vim.lsp.buf.signature_help()'), opts(noremap, buffer) },
+    -- Renames all references to the symbol under the cursor
+    { '<F2>', cmd('lua vim.lsp.buf.rename()'), opts(noremap, buffer) },
+    -- Selects a code action available at the current cursor position
+    { '<F4>', cmd('lua vim.lsp.buf.code_action()'), opts(noremap, buffer) },
+    -- Show diagnostics in a floating window
+    { 'gl', cmd('lua vim.diagnostic.open_float()'), opts(noremap, buffer) },
+    -- Move to the previous diagnostic
+    { '[d', cmd('lua vim.diagnostic.goto_prev()'), opts(noremap, buffer) },
+    -- Move to the next diagnostic
+    { ']d', cmd('lua vim.diagnostic.goto_next()'), opts(noremap, buffer) },
+    -- Format file
+    { '=', cmd('lua vim.lsp.buf.formatting()'), opts(noremap, buffer) },
 
-      -- currently unused lsp mappings
-      -- { '<Leader>ee', cmd('lua vim.lsp.util.show_line_diagnostics()'), opts(noremap, silent, buffer) },
-      -- { '<Leader>gw', cmd('lua vim.lsp.buf.document_symbol()'), opts(noremap, silent) },
-      -- { '<Leader>gW', cmd('lua vim.lsp.buf.workspace_symbol()'), opts(noremap, silent) },
-      -- { '<Leader>ai', cmd('lua vim.lsp.buf.incoming_calls()'), opts(noremap, silent) },
-      -- { '<Leader>ao', cmd('lua vim.lsp.buf.outgoing_calls()'), opts(noremap, silent) },
-    })
+    -- currently unused lsp mappings
+    -- { '<Leader>ee', cmd('lua vim.lsp.util.show_line_diagnostics()'), opts(noremap, silent, buffer) },
+    -- { '<Leader>gw', cmd('lua vim.lsp.buf.document_symbol()'), opts(noremap, silent) },
+    -- { '<Leader>gW', cmd('lua vim.lsp.buf.workspace_symbol()'), opts(noremap, silent) },
+    -- { '<Leader>ai', cmd('lua vim.lsp.buf.incoming_calls()'), opts(noremap, silent) },
+    -- { '<Leader>ao', cmd('lua vim.lsp.buf.outgoing_calls()'), opts(noremap, silent) },
+  })
 
-    xmap(
-      -- Selects a code action available at the selected lines
-      { '<F4>', cmd('lua vim.lsp.buf.range_code_action()'), opts(noremap, silent, buffer) }
-    )
-  end
+  xmap(
+    -- Selects a code action available at the selected lines
+    { '<F4>', cmd('lua vim.lsp.buf.range_code_action()'), opts(noremap, silent, buffer) }
+  )
 end
