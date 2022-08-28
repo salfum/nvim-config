@@ -1,11 +1,12 @@
 local plugin = require('core.pack').register_plugin
 
 plugin({
-  'jsit/toast.vim',
-  commit = '6ef5cea8298e64a555cfaf7541bb94781d06dc69',
+  'EdenEast/nightfox.nvim',
+  commit = 'e2f961859cbfb2ba38147dc59fdd2314992c8b62',
   config = function()
-    require('modules.ui.configs.toast')
+    require('modules.ui.configs.nightfox')
   end,
+  run = ':NightfoxCompile',
 })
 
 plugin({
