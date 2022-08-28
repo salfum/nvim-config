@@ -25,6 +25,8 @@ local lsp_defaults = {
       client.resolved_capabilities.document_formatting = false
     end
 
+    require('lsp_signature').on_attach(client, bufnr)
+
     vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
   end,
 }
@@ -34,7 +36,7 @@ lspconfig.util.default_config = vim.tbl_deep_extend('force', lspconfig.util.defa
 vim.api.nvim_create_autocmd('User', {
   pattern = 'LspAttached',
   desc = 'LSP actions',
-  callback = lsp_keymaps(),
+  callback = lsp_keymaps,
 })
 
 vim.cmd([[

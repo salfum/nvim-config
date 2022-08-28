@@ -29,7 +29,7 @@ plugin({
     { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
     { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
     { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
-    { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' },
+    { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
 
     -- Snippets
@@ -42,6 +42,14 @@ plugin({
     },
     { 'rafamadriz/friendly-snippets' },
   },
+})
+
+plugin({
+  'ray-x/lsp_signature.nvim',
+  commit = 'e65a63858771db3f086c8d904ff5f80705fd962b',
+  config = function()
+    require('modules.completion.configs.lsp_signature')
+  end,
 })
 
 plugin({
