@@ -21,7 +21,6 @@ local create_dirs = function()
   end
 end
 
--- disable_distribution_plugins
 local disable_distribution_plugins = function()
   local distribution_plugins = {
     '2html_plugin',

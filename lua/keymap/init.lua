@@ -18,12 +18,14 @@ nmap({
   -- nvimtree
   { '<Leader>e', cmd('NvimTreeToggle'), opts(noremap, silent) },
   -- Telescope
-  { '<Leader>b', cmd('Telescope buffers'), opts(noremap, silent) },
+  { '<Leader>fb', cmd('Telescope buffers'), opts(noremap, silent) },
   { '<Leader>fg', cmd('Telescope live_grep'), opts(noremap, silent) },
   { '<Leader>ff', cmd('Telescope find_files'), opts(noremap, silent) },
   { '<Leader>fr', cmd('Telescope oldfiles'), opts(noremap, silent) },
   { '<Leader>fc', cmd('Telescope command_history'), opts(noremap, silent) },
   { '<Leader>fw', cmd('Telescope grep_string'), opts(noremap, silent) },
+  { '<Leader>fz', cmd('Telescope zoxide list'), opts(noremap, silent) },
+  { '<Leader>fc', cmd('Telescope neoclip a extra=star,plus,b'), opts(noremap, silent) },
   { '<F5>', cmd('LocalHistoryToggle'), opts(noremap, silent) },
   -- project.nvim
   { '<leader>p', cmd('Telescope projects'), opts(noremap, silent) },

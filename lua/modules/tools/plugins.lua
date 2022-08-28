@@ -15,6 +15,17 @@ plugin({
     { 'nvim-lua/popup.nvim' },
     { 'nvim-lua/plenary.nvim' },
     { 'nvim-telescope/telescope-fzy-native.nvim' },
+    {
+      'jvgrootveld/telescope-zoxide',
+      commit = 'dbd9674e31e5caccae054a4ccee24ff8d1f2053f',
+    },
+    {
+      'AckslD/nvim-neoclip.lua',
+      commit = '74af02e289b3ea465bc8a4d7b9b83adc4e4b8c06',
+      config = function()
+        require('modules.tools.configs.nvim-neoclip')
+      end,
+    },
   },
 })
 
