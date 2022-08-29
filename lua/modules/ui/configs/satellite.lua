@@ -1,1 +1,1 @@
-require('satellite').setup()
+require('satellite').setup({})

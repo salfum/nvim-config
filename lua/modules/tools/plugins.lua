@@ -14,7 +14,7 @@ plugin({
   requires = {
     { 'nvim-lua/popup.nvim' },
     { 'nvim-lua/plenary.nvim' },
-    { 'nvim-telescope/telescope-fzy-native.nvim' },
+    { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
     {
       'jvgrootveld/telescope-zoxide',
       commit = 'dbd9674e31e5caccae054a4ccee24ff8d1f2053f',

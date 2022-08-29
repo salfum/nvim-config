@@ -1,7 +1,7 @@
 if not packer_plugins['plenary.nvim'].loaded then
   vim.cmd([[packadd plenary.nvim]])
   vim.cmd([[packadd popup.nvim]])
-  vim.cmd([[packadd telescope-fzy-native.nvim]])
+  vim.cmd([[packadd telescope-fzf-native.nvim]])
   vim.cmd([[packadd telescope-file-browser.nvim]])
 end
 
@@ -160,14 +160,16 @@ require('telescope').setup({
     },
   },
   extensions = {
-    fzy_native = {
-      override_generic_sorter = false,
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
       override_file_sorter = true,
+      case_mode = 'smart_case',
     },
   },
 })
 
-require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('fzf')
 
 require('telescope').load_extension('projects')
 
