@@ -18,6 +18,7 @@ plugin({
     { 'williamboman/mason-lspconfig.nvim' },
 
     -- Autocompletion
+    { 'hrsh7th/cmp-nvim-lsp', ft = enabled_lsp_filetypes },
     {
       'hrsh7th/nvim-cmp',
       event = 'BufReadPre',
@@ -29,8 +30,7 @@ plugin({
     { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
     { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
     { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
-    { 'hrsh7th/cmp-nvim-lsp' },
-    { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+    { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp', ft = { 'lua' } },
 
     -- Snippets
     {
@@ -47,6 +47,7 @@ plugin({
 plugin({
   'ray-x/lsp_signature.nvim',
   commit = 'e65a63858771db3f086c8d904ff5f80705fd962b',
+  ft = enabled_lsp_filetypes,
   config = function()
     require('modules.completion.configs.lsp_signature')
   end,
@@ -60,14 +61,5 @@ plugin({
   },
   config = function()
     require('modules.completion.configs.null-ls')
-  end,
-})
-
-plugin({
-  'windwp/nvim-autopairs',
-  commit = '0a18e10a0c3fde190437567e40557dcdbbc89ea1',
-  event = 'InsertEnter',
-  config = function()
-    require('modules.completion.configs.nvim-autopairs')
   end,
 })
