@@ -26,7 +26,7 @@ local disable_distribution_plugins = function()
     '2html_plugin',
     'bugreport',
     'compiler',
-    'ftplugin',
+    -- 'ftplugin',
     'getscript',
     'getscriptPlugin',
     'gzip',
