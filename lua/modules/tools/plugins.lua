@@ -93,3 +93,11 @@ plugin({
     require('modules.tools.configs.project')
   end,
 })
+
+plugin({
+  'ThePrimeagen/harpoon',
+  commit = 'f4aff5bf9b512f5a85fe20eb1dcf4a87e512d971',
+  config = function()
+    require('modules.tools.configs.harpoon')
+  end,
+})

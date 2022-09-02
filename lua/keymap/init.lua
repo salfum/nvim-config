@@ -26,11 +26,16 @@ nmap({
   { '<Leader>fw', cmd('Telescope grep_string'), opts(noremap, silent) },
   { '<Leader>fz', cmd('Telescope zoxide list'), opts(noremap, silent) },
   { '<Leader>fc', cmd('Telescope neoclip a extra=star,plus,b'), opts(noremap, silent) },
+  { '<Leader>fh', cmd('Telescope harpoon marks'), opts(noremap, silent) },
   { '<F5>', cmd('LocalHistoryToggle'), opts(noremap, silent) },
   -- project.nvim
   { '<leader>p', cmd('Telescope projects'), opts(noremap, silent) },
   -- Comment.nvim
   { '<leader>/', cmd('lua require("Comment.api").toggle.linewise.current()'), opts(silent) },
+  -- harpoon.nvim
+  { '<leader>mm', cmd('lua require("harpoon.mark").add_file()'), opts(noremap, silent) },
+  { '<leader>mn', cmd('lua require("harpoon.ui").nav_next()'), opts(noremap, silent) },
+  { '<leader>mp', cmd('lua require("harpoon.ui").nav_prev()'), opts(noremap, silent) },
 })
 
 vmap(
