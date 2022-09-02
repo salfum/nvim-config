@@ -81,6 +81,10 @@ lspconfig.elixirls.setup({
 lspconfig.sumneko_lua.setup({
   settings = {
     Lua = {
+      runtime = {
+        version = 'LuaJIT',
+        path = vim.split(package.path, ';'),
+      },
       diagnostics = {
         globals = { 'hs', 'vim', 'it', 'describe', 'before_each', 'after_each' },
         disable = { 'lowercase-global', 'undefined-global', 'unused-local', 'unused-vararg', 'trailing-space' },
@@ -88,6 +92,12 @@ lspconfig.sumneko_lua.setup({
       completion = {
         keywordSnippet = 'Replace',
         callSnippet = 'Replace',
+      },
+      workspace = {
+        library = {
+          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+          [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+        },
       },
     },
   },
