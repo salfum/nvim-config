@@ -36,6 +36,8 @@ nmap({
   { '<leader>mm', cmd('lua require("harpoon.mark").add_file()'), opts(noremap, silent) },
   { '<leader>mn', cmd('lua require("harpoon.ui").nav_next()'), opts(noremap, silent) },
   { '<leader>mp', cmd('lua require("harpoon.ui").nav_prev()'), opts(noremap, silent) },
+  -- symbols_outline.nvim
+  { '<leader>t', cmd('SymbolsOutline'), opts(noremap, silent) },
 })
 
 vmap(
