@@ -22,6 +22,7 @@ opt.directory = cache_dir .. 'swag/'
 opt.encoding = 'utf-8'
 opt.errorbells = true
 opt.fileformats = 'unix,mac,dos'
+opt.fillchars = 'eob: ' -- remove tildes in the end of buffer
 opt.foldlevelstart = 99
 opt.grepformat = '%f:%l:%c:%m'
 opt.grepprg = 'rg --hidden --vimgrep --smart-case --'
