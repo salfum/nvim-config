@@ -110,6 +110,15 @@ end
 
 load_highlight(group)
 
+-- automatic change telescope colorscheme
+-- when neovim colorscheme changes
+vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
+  pattern = '*',
+  callback = function()
+    load_highlight(group)
+  end,
+})
+
 require('telescope').setup({
   defaults = {
     vimgrep_arguments = {
