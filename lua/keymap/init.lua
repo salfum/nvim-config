@@ -27,6 +27,7 @@ nmap({
   { '<Leader>fz', cmd('Telescope zoxide list'), opts(noremap, silent) },
   { '<Leader>fc', cmd('Telescope neoclip a extra=star,plus,b'), opts(noremap, silent) },
   { '<Leader>fh', cmd('Telescope harpoon marks'), opts(noremap, silent) },
+  { '<Leader>fs', cmd('Telescope git_status'), opts(noremap, silent) },
   { '<F5>', cmd('LocalHistoryToggle'), opts(noremap, silent) },
   -- project.nvim
   { '<leader>p', cmd('Telescope projects'), opts(noremap, silent) },
@@ -63,7 +64,7 @@ lsp_keymaps = function()
     -- Lists all the references
     { 'gr', cmd('Telescope lsp_references'), opts(noremap, buffer) },
     -- Displays a function's signature information
-    { '<C-k>', cmd('lua vim.lsp.buf.signature_help()'), opts(noremap, buffer) },
+    { 'gk', cmd('lua vim.lsp.buf.signature_help()'), opts(noremap, buffer) },
     -- Renames all references to the symbol under the cursor
     { '<F2>', cmd('lua vim.lsp.buf.rename()'), opts(noremap, buffer) },
     -- Selects a code action available at the current cursor position
