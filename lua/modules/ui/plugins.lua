@@ -60,6 +60,15 @@ plugin({
   end,
 })
 
+plugin({
+  'brenoprata10/nvim-highlight-colors',
+  commit = 'e2ebd0ce72a77f2f44a8cf980c1bc1226f2e8395',
+  ft = { 'lua', 'css', 'scss' },
+  config = function()
+    require('modules.ui.configs.nvim-highlight-colors')
+  end,
+})
+
 -- Necessary until this issue is open
 -- https://github.com/neovim/neovim/issues/12587
 plugin({
