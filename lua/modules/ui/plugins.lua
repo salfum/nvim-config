@@ -69,6 +69,14 @@ plugin({
   end,
 })
 
+plugin({
+  'Pocco81/true-zen.nvim',
+  commit = '',
+  config = function()
+    require('modules.ui.configs.true-zen')
+  end,
+})
+
 -- Necessary until this issue is open
 -- https://github.com/neovim/neovim/issues/12587
 plugin({

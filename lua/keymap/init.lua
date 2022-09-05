@@ -39,12 +39,19 @@ nmap({
   { '<leader>mp', cmd('lua require("harpoon.ui").nav_prev()'), opts(noremap, silent) },
   -- symbols_outline.nvim
   { '<leader>t', cmd('SymbolsOutline'), opts(noremap, silent) },
+  -- true-zen.nvim
+  { '<leader>zn', cmd('TZNarrow'), opts(noremap, silent) },
+  { '<leader>zf', cmd('TZFocus'), opts(noremap, silent) },
+  { '<leader>zm', cmd('TZMinimalist'), opts(noremap, silent) },
+  { '<leader>za', cmd('TZAtaraxis'), opts(noremap, silent) },
 })
 
-vmap(
+vmap({
   -- Comment.nvim
-  { '<leader>/', "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts(silent) }
-)
+  { '<leader>/', "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts(silent) },
+  -- true-zen.nvim
+  { '<leader>zn', cmd("'<,'>TZNarrow"), opts(noremap, silent) },
+})
 
 nmap({ '<C-g>', cmd("lua require('leap').leap { target_windows = { vim.fn.win_getid() } }"), opts(noremap) })
 imap({ '<C-g>', cmd("lua require('leap').leap { target_windows = { vim.fn.win_getid() } }"), opts(noremap) })
@@ -64,7 +71,7 @@ lsp_keymaps = function()
     -- Lists all the references
     { 'gr', cmd('Telescope lsp_references'), opts(noremap, buffer) },
     -- Displays a function's signature information
-    { 'gk', cmd('lua vim.lsp.buf.signature_help()'), opts(noremap, buffer) },
+    { 'gK', cmd('lua vim.lsp.buf.signature_help()'), opts(noremap, buffer) },
     -- Renames all references to the symbol under the cursor
     { '<F2>', cmd('lua vim.lsp.buf.rename()'), opts(noremap, buffer) },
     -- Selects a code action available at the current cursor position
