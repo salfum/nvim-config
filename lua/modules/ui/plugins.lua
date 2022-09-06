@@ -20,6 +20,7 @@ plugin({
 plugin({
   'glepnir/galaxyline.nvim',
   commit = 'eb81be07bf690c5ef7474ace72920b32ad089585',
+  event = 'VimEnter',
   config = function()
     require('modules.ui.configs.galaxyline')
   end,
@@ -29,7 +30,8 @@ plugin({
 plugin({
   'kyazdani42/nvim-tree.lua',
   commit = 'ce5d0a6b7ddfec622554943d2ebcc739b1d74567',
-  cmd = 'NvimTreeToggle',
+  ft = 'alpha',
+  cmd = { 'NvimTreeToggle', 'NvimTreeFocus' },
   config = function()
     require('modules.ui.configs.nvim-tree')
   end,
@@ -48,6 +50,7 @@ plugin({
 plugin({
   'j-hui/fidget.nvim',
   commit = '492492e7d50452a9ace8346d31f6d6da40439f0e',
+  event = 'BufReadPost',
   config = function()
     require('modules.ui.configs.fidget')
   end,
@@ -55,6 +58,7 @@ plugin({
 
 plugin({
   'salfum/satellite.nvim',
+  event = 'VimEnter',
   config = function()
     require('modules.ui.configs.satellite')
   end,
@@ -71,7 +75,8 @@ plugin({
 
 plugin({
   'Pocco81/true-zen.nvim',
-  commit = '',
+  commit = '98740c76254c65576ec294551028b65081053588',
+  event = 'VimEnter',
   config = function()
     require('modules.ui.configs.true-zen')
   end,

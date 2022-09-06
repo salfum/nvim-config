@@ -15,7 +15,12 @@ plugin({
   requires = {
     -- LSP support
     { 'williamboman/mason.nvim' },
-    { 'williamboman/mason-lspconfig.nvim' },
+    {
+      'williamboman/mason-lspconfig.nvim',
+      config = function()
+        require('modules.completion.configs.mason-lspconfig')
+      end,
+    },
 
     -- Autocompletion
     { 'hrsh7th/cmp-nvim-lsp', ft = enabled_lsp_filetypes },
@@ -56,6 +61,7 @@ plugin({
 plugin({
   'jose-elias-alvarez/null-ls.nvim',
   commit = '753ad51790a966b42997ac935e26573fb6d5864a',
+  event = 'BufReadPost',
   requires = {
     'nvim-lua/plenary.nvim',
   },

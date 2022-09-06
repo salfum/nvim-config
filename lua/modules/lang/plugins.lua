@@ -10,11 +10,22 @@ plugin({
   end,
 })
 
-plugin({ 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' })
-plugin({ 'salfum/nvim-ts-rainbow', after = 'nvim-treesitter' })
+plugin({
+  'nvim-treesitter/nvim-treesitter-textobjects',
+  after = 'nvim-treesitter',
+  event = 'BufRead',
+})
+
+plugin({
+  'salfum/nvim-ts-rainbow',
+  after = 'nvim-treesitter',
+  event = 'BufRead',
+})
+
 plugin({
   'salfum/nvim-treesitter-context',
   after = 'nvim-treesitter',
+  event = 'BufRead',
   config = function()
     require('modules.lang.configs.nvim-treesitter-context')
   end,
@@ -23,6 +34,7 @@ plugin({
 plugin({
   'numToStr/Comment.nvim',
   commit = '80e7746e42fa685077a7941e9022308c7ad6adf8',
+  event = 'BufReadPost',
   config = function()
     require('modules.lang.configs.comment')
   end,
@@ -31,6 +43,7 @@ plugin({
 plugin({
   'simrat39/symbols-outline.nvim',
   commit = '6a3ed24c5631da7a5d418bced57c16b32af7747c',
+  event = 'BufReadPost',
   config = function()
     require('modules.lang.configs.symbols-outline')
   end,
@@ -39,6 +52,7 @@ plugin({
 plugin({
   'lyokha/vim-xkbswitch',
   commit = 'daab553bb2c6cf9c437780d26e47a8769b4dd7e2',
+  event = 'BufReadPost',
   config = function()
     require('modules.lang.configs.vim-xkbswitch')
   end,

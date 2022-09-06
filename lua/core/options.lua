@@ -80,7 +80,7 @@ function define_options()
   opt.writebackup = false
 
   -- Neovim Nightly options
-  opt.cmdheight = 2
+  opt.cmdheight = 1
   opt.cmdwinheight = 5
   opt.display = 'lastline'
   opt.equalalways = false
