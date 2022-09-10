@@ -44,6 +44,8 @@ nmap({
   { '<leader>zf', cmd('TZFocus'), opts(noremap, silent) },
   { '<leader>zm', cmd('TZMinimalist'), opts(noremap, silent) },
   { '<leader>za', cmd('TZAtaraxis'), opts(noremap, silent) },
+  -- lsp_lines.nvim
+  { '<leader>l', cmd('lua require("lsp_lines").toggle'), opts(noremap, silent) },
 })
 
 vmap({

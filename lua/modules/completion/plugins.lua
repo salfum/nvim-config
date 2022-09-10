@@ -59,6 +59,14 @@ plugin({
 })
 
 plugin({
+  'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+  commit = 'dbfd8e96ec2696e1ceedcd23fd70e842256e3dea',
+  config = function()
+    require('modules.completion.configs.lsp_lines')
+  end,
+})
+
+plugin({
   'jose-elias-alvarez/null-ls.nvim',
   commit = '753ad51790a966b42997ac935e26573fb6d5864a',
   event = 'BufReadPost',
