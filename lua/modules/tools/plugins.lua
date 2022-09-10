@@ -106,3 +106,11 @@ plugin({
     require('modules.tools.configs.harpoon')
   end,
 })
+
+plugin({
+  'rmagatti/auto-session',
+  commit = '9c302e01ebb474f9b19998488060d9f110ef75c5',
+  config = function()
+    require('modules.tools.configs.auto-session')
+  end,
+})
