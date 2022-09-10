@@ -13,19 +13,16 @@ plugin({
 plugin({
   'nvim-treesitter/nvim-treesitter-textobjects',
   after = 'nvim-treesitter',
-  event = 'BufRead',
 })
 
 plugin({
   'salfum/nvim-ts-rainbow',
   after = 'nvim-treesitter',
-  event = 'BufRead',
 })
 
 plugin({
   'salfum/nvim-treesitter-context',
   after = 'nvim-treesitter',
-  event = 'BufRead',
   config = function()
     require('modules.lang.configs.nvim-treesitter-context')
   end,
