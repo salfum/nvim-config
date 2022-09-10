@@ -1,11 +1,11 @@
 local groups = {
   terafox = {
-    CursorLine = { bg = '#212829' },
-    ColorColumn = { bg = '#212829' },
+    CursorLine = { bg = '#0F1C1E' },
+    ColorColumn = { bg = '#0F1C1E' },
   },
   nightfox = {
-    CursorLine = { bg = '#212829' },
-    ColorColumn = { bg = '#212829' },
+    CursorLine = { bg = '#0F1C1E' },
+    ColorColumn = { bg = '#0F1C1E' },
   },
 }
 

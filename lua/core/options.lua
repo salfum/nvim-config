@@ -149,16 +149,16 @@ end
 function relativenumber_autotoggle()
   local group = vim.api.nvim_create_augroup('RelativeNumberToggle', { clear = true })
 
-  vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
+  vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter' }, {
     pattern = '*',
     group = group,
-    command = 'set relativenumber',
+    command = 'if &nu && mode() != "i" | set rnu | endif',
   })
 
-  vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
+  vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave' }, {
     pattern = '*',
     group = group,
-    command = 'set norelativenumber',
+    command = 'if &nu | set nornu | endif',
   })
 end
 
