@@ -1,9 +1,5 @@
 local home = os.getenv('HOME')
 local lspconfig = require('lspconfig')
-local List = require('plenary.collections.py_list')
-
-require('mason').setup()
-require('mason-lspconfig').setup()
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -11,18 +7,25 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = { 'documentation', 'detail', 'additionalTextEdits' },
 }
 
-local disabled_formatting_servers = List({
+local disabled_formatting_servers = {
   'sumneko_lua',
-})
+}
+
+local status_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+if status_ok then
+  capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+end
 
 local lsp_defaults = {
   flags = {
     debounce_text_changes = 150,
   },
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities),
+  capabilities = capabilities,
   on_attach = function(client, bufnr)
-    if disabled_formatting_servers:contains(client.name) then
-      client.resolved_capabilities.document_formatting = false
+    for _, v in ipairs(disabled_formatting_servers) do
+      if v == client.name then
+        client.resolved_capabilities.document_formatting = false
+      end
     end
 
     require('lsp_signature').on_attach(client, bufnr)

@@ -46,6 +46,12 @@ nmap({
   { '<leader>za', cmd('TZAtaraxis'), opts(noremap, silent) },
   -- lsp_lines.nvim
   { '<leader>l', cmd('lua require("lsp_lines").toggle'), opts(noremap, silent) },
+  -- goto-preview
+  { 'gad', cmd('lua require("goto-preview").goto_preview_definition()'), opts(noremap) },
+  { 'gat', cmd('lua require("goto-preview").goto_preview_type_definition()'), opts(noremap) },
+  { 'gai', cmd('lua require("goto-preview").goto_preview_implementation()'), opts(noremap) },
+  { 'gar', cmd('lua require("goto-preview").goto_preview_references()'), opts(noremap) },
+  { 'gA', cmd('lua require("goto-preview").close_all_win()'), opts(noremap) },
 })
 
 vmap({
