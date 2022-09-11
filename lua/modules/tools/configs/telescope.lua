@@ -1,10 +1,3 @@
-if not packer_plugins['plenary.nvim'].loaded then
-  vim.cmd([[packadd plenary.nvim]])
-  vim.cmd([[packadd popup.nvim]])
-  vim.cmd([[packadd telescope-fzf-native.nvim]])
-  vim.cmd([[packadd telescope-file-browser.nvim]])
-end
-
 local file_ignore_patterns = {
   'node_modules',
   'deps',
@@ -108,8 +101,6 @@ load_highlight = function(group)
   end
 end
 
-load_highlight(group)
-
 -- automatic change telescope colorscheme
 -- when neovim colorscheme changes
 vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
@@ -119,69 +110,85 @@ vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
   end,
 })
 
-require('telescope').setup({
-  defaults = {
-    vimgrep_arguments = {
-      'rg',
-      '--color=never',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case',
-    },
-    prompt_prefix = '   ',
-    selection_caret = '  ',
-    entry_prefix = '  ',
-    initial_mode = 'insert',
-    selection_strategy = 'reset',
-    layout_strategy = 'horizontal',
-    sorting_strategy = 'ascending',
+local plenary_status_ok, _ = pcall(require, 'plenary')
+local telescope_status_ok, _ = pcall(require, 'telescope')
 
-    layout_config = {
-      horizontal = {
-        prompt_position = 'top',
-        preview_width = 0.55,
-        results_width = 0.8,
+if plenary_status_ok and telescope_status_ok then
+  load_highlight(group)
+
+  require('telescope').setup({
+    defaults = {
+      vimgrep_arguments = {
+        'rg',
+        '--color=never',
+        '--no-heading',
+        '--with-filename',
+        '--line-number',
+        '--column',
+        '--smart-case',
       },
-      vertical = { mirror = false },
-      width = 0.87,
-      height = 0.80,
-      preview_cutoff = 120,
+      prompt_prefix = '   ',
+      selection_caret = '  ',
+      entry_prefix = '  ',
+      initial_mode = 'insert',
+      selection_strategy = 'reset',
+      layout_strategy = 'horizontal',
+      sorting_strategy = 'ascending',
+
+      layout_config = {
+        horizontal = {
+          prompt_position = 'top',
+          preview_width = 0.55,
+          results_width = 0.8,
+        },
+        vertical = { mirror = false },
+        width = 0.87,
+        height = 0.80,
+        preview_cutoff = 120,
+      },
+      file_sorter = require('telescope.sorters').get_fuzzy_file,
+      file_ignore_patterns = file_ignore_patterns,
+      generic_sorter = require('telescope.sorters').get_generic_fuzzy_sorter,
+      path_display = { 'truncate' },
+      winblend = 0,
+      border = {},
+      borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+      color_devicons = true,
+      set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+
+      file_previewer = require('telescope.previewers').vim_buffer_cat.new,
+      grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
+      qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
+      buffer_previewer_maker = require('telescope.previewers').buffer_previewer_maker,
+
+      mappings = {
+        n = { ['q'] = require('telescope.actions').close },
+      },
     },
-    file_sorter = require('telescope.sorters').get_fuzzy_file,
-    file_ignore_patterns = file_ignore_patterns,
-    generic_sorter = require('telescope.sorters').get_generic_fuzzy_sorter,
-    path_display = { 'truncate' },
-    winblend = 0,
-    border = {},
-    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-    color_devicons = true,
-    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-
-    file_previewer = require('telescope.previewers').vim_buffer_cat.new,
-    grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
-    qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
-    buffer_previewer_maker = require('telescope.previewers').buffer_previewer_maker,
-
-    mappings = {
-      n = { ['q'] = require('telescope.actions').close },
+    extensions = {
+      fzf = {
+        fuzzy = true,
+        override_generic_sorter = true,
+        override_file_sorter = true,
+        case_mode = 'smart_case',
+      },
     },
-  },
-  extensions = {
-    fzf = {
-      fuzzy = true,
-      override_generic_sorter = true,
-      override_file_sorter = true,
-      case_mode = 'smart_case',
-    },
-  },
-})
+  })
 
-require('telescope').load_extension('fzf')
+  local fzf_status_ok, _ = pcall(require, 'telescope-fzf-native')
+  if fzf_status_ok then
+    require('telescope').load_extension('fzf')
+  end
 
-require('telescope').load_extension('projects')
+  local zoxide_status_ok, _ = pcall(require, 'telescope-zoxide')
+  if zoxide_status_ok then
+    require('telescope').load_extension('zoxide')
+  end
 
-require('telescope').load_extension('zoxide')
+  local harpoon_status_ok, _ = pcall(require, 'harpoon')
+  if harpoon_status_ok then
+    require('telescope').load_extension('harpoon')
+  end
 
-require('telescope').load_extension('harpoon')
+  require('telescope').load_extension('projects')
+end

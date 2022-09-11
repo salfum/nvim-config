@@ -20,7 +20,6 @@ plugin({
 plugin({
   'glepnir/galaxyline.nvim',
   commit = 'eb81be07bf690c5ef7474ace72920b32ad089585',
-  event = 'VimEnter',
   config = function()
     require('modules.ui.configs.galaxyline')
   end,
@@ -58,7 +57,7 @@ plugin({
 
 plugin({
   'salfum/satellite.nvim',
-  event = 'VimEnter',
+  event = 'BufReadPost',
   config = function()
     require('modules.ui.configs.satellite')
   end,
@@ -68,6 +67,7 @@ plugin({
   'brenoprata10/nvim-highlight-colors',
   commit = 'e2ebd0ce72a77f2f44a8cf980c1bc1226f2e8395',
   ft = { 'lua', 'css', 'scss' },
+  event = 'BufReadPost',
   config = function()
     require('modules.ui.configs.nvim-highlight-colors')
   end,
@@ -76,7 +76,7 @@ plugin({
 plugin({
   'Pocco81/true-zen.nvim',
   commit = '98740c76254c65576ec294551028b65081053588',
-  event = 'VimEnter',
+  event = 'BufReadPost',
   config = function()
     require('modules.ui.configs.true-zen')
   end,

@@ -5,14 +5,17 @@ plugin({
   commit = 'b842e16ecc1a700f62adb9802f8355b99b52a5a6',
 })
 
+plugin({ 'nvim-lua/plenary.nvim' })
+
 plugin({
   'nvim-telescope/telescope.nvim',
+  after = 'plenary.nvim',
+  cmd = 'Telescope',
   config = function()
     require('modules.tools.configs.telescope')
   end,
   requires = {
     { 'nvim-lua/popup.nvim' },
-    { 'nvim-lua/plenary.nvim' },
     { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
     {
       'jvgrootveld/telescope-zoxide',
@@ -47,7 +50,7 @@ plugin({
 plugin({
   'ggandor/leap.nvim',
   commit = '91897282189608125025e804912cebbc7c947ce5',
-  event = 'VimEnter',
+  event = 'BufReadPost',
   config = function()
     require('modules.tools.configs.leap')
   end,
@@ -75,7 +78,7 @@ plugin({
 plugin({
   'dinhhuy258/vim-local-history',
   commit = '000b8acecd14ff005a4e1198c82be901c7fbe904',
-  event = 'VimEnter',
+  event = 'BufReadPost',
   run = ':UpdateRemotePlugins',
   config = function()
     require('modules.tools.configs.vim-local-history')
@@ -85,7 +88,7 @@ plugin({
 plugin({
   'declancm/cinnamon.nvim',
   commit = '7594df88c798df7a9cf9f4bf14e7fd145035d71d',
-  event = 'VimEnter',
+  event = 'BufReadPost',
   config = function()
     require('modules.tools.configs.cinnamon')
   end,
@@ -102,6 +105,7 @@ plugin({
 plugin({
   'ThePrimeagen/harpoon',
   commit = 'f4aff5bf9b512f5a85fe20eb1dcf4a87e512d971',
+  after = 'plenary.nvim',
   config = function()
     require('modules.tools.configs.harpoon')
   end,
@@ -110,6 +114,7 @@ plugin({
 plugin({
   'rmagatti/auto-session',
   commit = '9c302e01ebb474f9b19998488060d9f110ef75c5',
+  disable = true,
   config = function()
     require('modules.tools.configs.auto-session')
   end,
