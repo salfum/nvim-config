@@ -35,6 +35,7 @@ function define_options()
   opt.inccommand = 'nosplit'
   opt.infercase = true
   opt.jumpoptions = 'stack'
+  opt.lazyredraw = true
   opt.list = true
   opt.magic = true
   opt.mouse = 'a'
