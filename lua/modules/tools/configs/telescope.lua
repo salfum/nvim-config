@@ -1,3 +1,8 @@
+if not packer_plugins['plenary.nvim'].loaded then
+  vim.cmd([[packadd plenary.nvim]])
+  vim.cmd([[packadd popup.nvim]])
+end
+
 local file_ignore_patterns = {
   'node_modules',
   'deps',
@@ -175,20 +180,23 @@ if plenary_status_ok and telescope_status_ok then
     },
   })
 
-  local fzf_status_ok, _ = pcall(require, 'telescope-fzf-native')
-  if fzf_status_ok then
-    require('telescope').load_extension('fzf')
+  if not packer_plugins['telescope-fzf-native.nvim'].loaded then
+    vim.cmd([[packadd telescope-fzf-native.nvim]])
   end
 
-  local zoxide_status_ok, _ = pcall(require, 'telescope-zoxide')
-  if zoxide_status_ok then
-    require('telescope').load_extension('zoxide')
+  require('telescope').load_extension('fzf')
+
+  if not packer_plugins['telescope-zoxide'].loaded then
+    vim.cmd([[packadd telescope-zoxide]])
   end
 
-  local harpoon_status_ok, _ = pcall(require, 'harpoon')
-  if harpoon_status_ok then
-    require('telescope').load_extension('harpoon')
+  require('telescope').load_extension('zoxide')
+
+  if not packer_plugins['harpoon'].loaded then
+    vim.cmd([[packadd harpoon]])
   end
+
+  require('telescope').load_extension('harpoon')
 
   require('telescope').load_extension('projects')
 end

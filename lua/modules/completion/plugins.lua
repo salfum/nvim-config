@@ -7,28 +7,21 @@ enabled_lsp_filetypes = {
 }
 
 plugin({
+  'williamboman/mason.nvim',
+})
+
+plugin({
+  'williamboman/mason-lspconfig.nvim',
+  after = 'mason.nvim',
+})
+
+plugin({
   'neovim/nvim-lspconfig',
   ft = enabled_lsp_filetypes,
   event = 'BufReadPost',
   config = function()
     require('modules.completion.configs.nvim-lspconfig')
   end,
-  requires = {
-    {
-      'williamboman/mason.nvim',
-      after = 'nvim-lspconfig',
-      config = function()
-        require('modules.completion.configs.mason')
-      end,
-    },
-    {
-      'williamboman/mason-lspconfig.nvim',
-      after = 'mason.nvim',
-      config = function()
-        require('modules.completion.configs.mason-lspconfig')
-      end,
-    },
-  },
 })
 
 plugin({
@@ -42,7 +35,7 @@ plugin({
     { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
     { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
     { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
-    { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp', ft = enabled_lsp_filetypes },
+    { 'hrsh7th/cmp-nvim-lsp', ft = enabled_lsp_filetypes },
     { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp', ft = { 'lua' } },
   },
 })
@@ -50,7 +43,7 @@ plugin({
 plugin({
   'L3MON4D3/LuaSnip',
   after = 'nvim-cmp',
-  event = 'InsertEnter',
+  event = 'BufReadPost',
   config = function()
     require('modules.completion.configs.LuaSnip')
   end,
