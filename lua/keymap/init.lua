@@ -81,9 +81,9 @@ lsp_keymaps = function()
     -- Displays a function's signature information
     { 'gK', cmd('lua vim.lsp.buf.signature_help()'), opts(noremap, buffer) },
     -- Renames all references to the symbol under the cursor
-    { '<F2>', cmd('lua vim.lsp.buf.rename()'), opts(noremap, buffer) },
+    { '<F2>', cmd('lua require("cosmic-ui").rename()'), opts(noremap, buffer) },
     -- Selects a code action available at the current cursor position
-    { '<F4>', cmd('lua vim.lsp.buf.code_action()'), opts(noremap, buffer) },
+    { '<F4>', cmd('lua require("cosmic-ui").code_actions()'), opts(noremap, buffer) },
     -- Show diagnostics in a floating window
     { 'gl', cmd('lua vim.diagnostic.open_float()'), opts(noremap, buffer) },
     -- Move to the previous diagnostic
@@ -103,6 +103,6 @@ lsp_keymaps = function()
 
   xmap(
     -- Selects a code action available at the selected lines
-    { '<F4>', cmd('lua vim.lsp.buf.range_code_action()'), opts(noremap, silent, buffer) }
+    { '<F4>', cmd('lua require("cosmic-ui").range_code_actions()'), opts(noremap, silent, buffer) }
   )
 end

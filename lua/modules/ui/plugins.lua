@@ -82,6 +82,16 @@ plugin({
   end,
 })
 
+plugin({
+  'CosmicNvim/cosmic-ui',
+  commit = 'd0445a5df703207b700151fb87537ac4bc3f962f',
+  event = 'BufReadPost',
+  config = function()
+    require('modules.ui.configs.cosmic-ui')
+  end,
+  requires = { 'MunifTanjim/nui.nvim' },
+})
+
 -- Necessary until this issue is open
 -- https://github.com/neovim/neovim/issues/12587
 plugin({
