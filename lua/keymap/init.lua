@@ -52,6 +52,12 @@ nmap({
   { 'gai', cmd('lua require("goto-preview").goto_preview_implementation()'), opts(noremap) },
   { 'gar', cmd('lua require("goto-preview").goto_preview_references()'), opts(noremap) },
   { 'gA', cmd('lua require("goto-preview").close_all_win()'), opts(noremap) },
+  -- vim-test
+  { '<leader>Tn', cmd('TestNearest'), opts(noremap) },
+  { '<leader>Tf', cmd('TestFile'), opts(noremap) },
+  { '<leader>Ts', cmd('TestSuite'), opts(noremap) },
+  { '<leader>Tl', cmd('TestLast'), opts(noremap) },
+  { '<leader>Tv', cmd('TestVisit'), opts(noremap) },
 })
 
 vmap({

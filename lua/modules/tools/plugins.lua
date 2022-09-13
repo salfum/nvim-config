@@ -112,6 +112,14 @@ plugin({
 })
 
 plugin({
+  'vim-test/vim-test',
+  commit = '4cbc269b7a8095fd500d80fda1e92bbe3769285f',
+  config = function()
+    require('modules.tools.configs.vim-test')
+  end,
+})
+
+plugin({
   'rmagatti/auto-session',
   commit = '9c302e01ebb474f9b19998488060d9f110ef75c5',
   disable = true,
