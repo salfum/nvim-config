@@ -114,9 +114,17 @@ plugin({
 plugin({
   'vim-test/vim-test',
   commit = '4cbc269b7a8095fd500d80fda1e92bbe3769285f',
+  ft = { 'elixir', 'lua', 'rust' },
+  event = 'BufReadPost',
   config = function()
     require('modules.tools.configs.vim-test')
   end,
+})
+
+plugin({
+  'chaoren/vim-wordmotion',
+  commit = '5dd613ed68a0ecf0fc6c11cd4098c03583786bf0',
+  event = 'InsertEnter',
 })
 
 plugin({
