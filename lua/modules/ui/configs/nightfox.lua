@@ -1,19 +1,12 @@
 local groups = {
-  terafox = {
-    CursorLine = { bg = '#0F1C1E' },
-    ColorColumn = { bg = '#0F1C1E' },
-  },
-  nightfox = {
-    CursorLine = { bg = '#0F1C1E' },
-    ColorColumn = { bg = '#0F1C1E' },
+  all = {
+    CursorLine = { bg = 'palette.bg0' },
+    ColorColumn = { bg = 'palette.bg0' },
   },
 }
 
 local palettes = {
-  carbonfox = {
-    white = '#BBC2CF',
-  },
-  terafox = {
+  all = {
     white = '#BBC2CF',
   },
 }

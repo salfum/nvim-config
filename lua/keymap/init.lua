@@ -58,6 +58,8 @@ nmap({
   { '<leader>Ts', cmd('TestSuite'), opts(noremap) },
   { '<leader>Tl', cmd('TestLast'), opts(noremap) },
   { '<leader>Tv', cmd('TestVisit'), opts(noremap) },
+  -- mini.bufremove
+  { '<C-w>', cmd('lua MiniBufremove.delete()'), opts(noremap, silent) },
 })
 
 vmap({

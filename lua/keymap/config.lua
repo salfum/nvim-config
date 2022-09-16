@@ -15,7 +15,6 @@ vmap({
 })
 
 nmap({
-  { '<C-w>', cmd('bdelete'), opts(noremap, silent) }, -- close buffer
   { '<C-s>', cmd('write'), opts(noremap) }, -- save
   { 'Y', 'y$', opts(noremap) }, -- yank
   { '<Escape>', cmd('noh'), opts(noremap) }, -- no highlight
