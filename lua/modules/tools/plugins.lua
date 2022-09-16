@@ -67,15 +67,6 @@ plugin({
 })
 
 plugin({
-  'kylechui/nvim-surround',
-  commit = '328f20c1d0e39ed30df3fc6334c093e8e8b72453',
-  event = 'BufReadPost',
-  config = function()
-    require('modules.tools.configs.nvim-surround')
-  end,
-})
-
-plugin({
   'dinhhuy258/vim-local-history',
   commit = '000b8acecd14ff005a4e1198c82be901c7fbe904',
   event = 'BufReadPost',
