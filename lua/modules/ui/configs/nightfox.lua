@@ -16,4 +16,4 @@ require('nightfox').setup({
   palettes = palettes,
 })
 
-vim.cmd('colorscheme terafox')
+vim.cmd('colorscheme carbonfox')

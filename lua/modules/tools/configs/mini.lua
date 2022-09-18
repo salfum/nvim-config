@@ -34,7 +34,7 @@ require('mini.surround').setup({
     find = '<leader>sf',
     find_left = '<leader>sF',
     highlight = '<leader>sh',
-    replace = '<leader>sr',
+    replace = '<leader>sc',
     update_n_lines = '<leader>sn',
 
     suffix_last = 'l', -- Suffix to search with "prev" method
