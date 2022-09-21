@@ -41,7 +41,6 @@ plugin({
 plugin({
   'lyokha/vim-xkbswitch',
   commit = 'daab553bb2c6cf9c437780d26e47a8769b4dd7e2',
-  event = 'BufReadPost',
   config = function()
     require('modules.lang.configs.vim-xkbswitch')
   end,
