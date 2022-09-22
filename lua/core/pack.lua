@@ -35,7 +35,10 @@ function Packer:load_packer()
     compile_path = packer_compiled,
     auto_clean = true,
     compile_on_sync = true,
-    git = { clone_timeout = 120 },
+    git = {
+      clone_timeout = 120,
+      depth = 1,
+    },
     disable_commands = true,
     display = {
       working_sym = 'ﲊ',

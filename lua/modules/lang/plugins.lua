@@ -2,7 +2,6 @@ local plugin = require('core.pack').register_plugin
 
 plugin({
   'nvim-treesitter/nvim-treesitter',
-  after = 'telescope.nvim',
   event = 'BufRead',
   run = ':TSUpdate',
   config = function()
@@ -13,7 +12,6 @@ plugin({
 plugin({
   'nvim-treesitter/nvim-treesitter-textobjects',
   after = 'nvim-treesitter',
-  event = 'BufReadPost',
 })
 
 plugin({

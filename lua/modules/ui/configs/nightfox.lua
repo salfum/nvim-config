@@ -3,6 +3,9 @@ local groups = {
     CursorLine = { bg = 'palette.bg0' },
     ColorColumn = { bg = 'palette.bg0' },
   },
+  carbonfox = {
+    String = { fg = '#81b29a' },
+  },
 }
 
 local palettes = {

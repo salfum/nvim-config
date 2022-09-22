@@ -10,7 +10,7 @@ plugin({ 'nvim-lua/plenary.nvim' })
 plugin({
   'nvim-telescope/telescope.nvim',
   after = 'plenary.nvim',
-  cmd = 'Telescope',
+  event = { 'CmdlineEnter', 'CursorHold' },
   config = function()
     require('modules.tools.configs.telescope')
   end,
