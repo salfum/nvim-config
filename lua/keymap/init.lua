@@ -79,13 +79,13 @@ lsp_keymaps = function()
     -- Displays hover information about the symbol under the cursor
     { 'K', cmd('lua vim.lsp.buf.hover()'), opts(noremap, buffer) },
     -- Jump to the definition
-    { 'gd', cmd('lua vim.lsp.buf.definition()'), opts(noremap, buffer) },
+    { 'gd', cmd('Telescope lsp_definitions'), opts(noremap, buffer) },
     -- Jump to declaration
     { 'gD', cmd('lua vim.lsp.buf.declaration()'), opts(noremap, buffer) },
     -- Lists all the implementations for the symbol under the cursor
-    { 'gi', cmd('lua vim.lsp.buf.implementation()'), opts(noremap, buffer) },
+    { 'gi', cmd('Telescope lsp_implementations'), opts(noremap, buffer) },
     -- Jumps to the definition of the type symbol
-    { 'go', cmd('lua vim.lsp.buf.type_definition()'), opts(noremap, buffer) },
+    { 'go', cmd('Telescope lsp_type_definitions'), opts(noremap, buffer) },
     -- Lists all the references
     { 'gr', cmd('Telescope lsp_references'), opts(noremap, buffer) },
     -- Displays a function's signature information
@@ -105,10 +105,10 @@ lsp_keymaps = function()
 
     -- currently unused lsp mappings
     -- { '<Leader>ee', cmd('lua vim.lsp.util.show_line_diagnostics()'), opts(noremap, silent, buffer) },
-    -- { '<Leader>gw', cmd('lua vim.lsp.buf.document_symbol()'), opts(noremap, silent) },
-    -- { '<Leader>gW', cmd('lua vim.lsp.buf.workspace_symbol()'), opts(noremap, silent) },
-    -- { '<Leader>ai', cmd('lua vim.lsp.buf.incoming_calls()'), opts(noremap, silent) },
-    -- { '<Leader>ao', cmd('lua vim.lsp.buf.outgoing_calls()'), opts(noremap, silent) },
+    -- { '<Leader>gw', cmd('Telescope lsp_document_symbols'), opts(noremap, silent) },
+    -- { '<Leader>gW', cmd('Telescope lsp_workspace_symbols'), opts(noremap, silent) },
+    -- { '<Leader>ai', cmd('Telescope lsp_incoming_calls'), opts(noremap, silent) },
+    -- { '<Leader>ao', cmd('Telescope lsp_outgoing_calls'), opts(noremap, silent) },
   })
 
   xmap(
