@@ -92,6 +92,20 @@ plugin({
   requires = { 'MunifTanjim/nui.nvim' },
 })
 
+plugin({
+  'beauwilliams/focus.nvim',
+  config = function()
+    require('modules.ui.configs.focus')
+  end,
+})
+
+plugin({
+  'kevinhwang91/nvim-hlslens',
+  config = function()
+    require('modules.ui.configs.nvim-hlslens')
+  end,
+})
+
 -- Necessary until this issue is open
 -- https://github.com/neovim/neovim/issues/12587
 plugin({
