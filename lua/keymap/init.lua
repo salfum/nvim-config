@@ -90,10 +90,6 @@ lsp_keymaps = function()
     { 'gr', cmd('Telescope lsp_references'), opts(noremap, buffer) },
     -- Displays a function's signature information
     { 'gK', cmd('lua vim.lsp.buf.signature_help()'), opts(noremap, buffer) },
-    -- Renames all references to the symbol under the cursor
-    { '<F2>', cmd('lua require("cosmic-ui").rename()'), opts(noremap, buffer) },
-    -- Selects a code action available at the current cursor position
-    { '<F4>', cmd('lua require("cosmic-ui").code_actions()'), opts(noremap, buffer) },
     -- Show diagnostics in a floating window
     { 'gl', cmd('lua vim.diagnostic.open_float()'), opts(noremap, buffer) },
     -- Move to the previous diagnostic
@@ -103,6 +99,11 @@ lsp_keymaps = function()
     -- Format file
     { '=', cmd('lua vim.lsp.buf.formatting()'), opts(noremap, buffer) },
 
+    -- Renames all references to the symbol under the cursor
+    { '<F2>', cmd('lua require("cosmic-ui").rename()'), opts(noremap, buffer) },
+    -- Selects a code action available at the current cursor position
+    { '<F4>', cmd('lua require("cosmic-ui").code_actions()'), opts(noremap, buffer) },
+
     -- currently unused lsp mappings
     -- { '<Leader>ee', cmd('lua vim.lsp.util.show_line_diagnostics()'), opts(noremap, silent, buffer) },
     -- { '<Leader>gw', cmd('Telescope lsp_document_symbols'), opts(noremap, silent) },
@@ -111,8 +112,8 @@ lsp_keymaps = function()
     -- { '<Leader>ao', cmd('Telescope lsp_outgoing_calls'), opts(noremap, silent) },
   })
 
-  xmap(
-    -- Selects a code action available at the selected lines
-    { '<F4>', cmd('lua require("cosmic-ui").range_code_actions()'), opts(noremap, silent, buffer) }
-  )
+  -- Selects a code action available at the selected lines
+  xmap({ '<F4>', cmd('lua require("cosmic-ui").range_code_actions()'), opts(noremap, silent, buffer) })
 end
+
+lsp_keymaps()
