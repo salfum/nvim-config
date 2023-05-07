@@ -1,11 +1,17 @@
 vim.g.miniai_disable = true
+vim.g.minialign_disable = true
+vim.g.minianimate_disable = true
 vim.g.minibufremove_disable = false
 vim.g.minicomment_disable = false
 vim.g.minicompletion_disable = true
 vim.g.minicursorword_disable = false
 vim.g.minidoc_disable = true
+vim.g.minifuzzy_disable = true
 vim.g.miniindentscope_disable = false
+vim.g.minijump_disable = true
 vim.g.minijump2d_disable = true
+vim.g.minimap_disable = true
+vim.g.minimisc_disable = true
 vim.g.minipairs_disable = false
 vim.g.minisessions_disable = true
 vim.g.ministarter_disable = true

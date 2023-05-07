@@ -42,6 +42,12 @@ plugin({
 })
 
 plugin({
+  'sindrets/diffview.nvim',
+  commit = 'e0c81186dcb96f9199024cbe3400ed367e716037',
+  requires = 'nvim-lua/plenary.nvim',
+})
+
+plugin({
   'mg979/vim-visual-multi',
   event = 'BufReadPost',
   commit = 'e23b98a8852255766e54bf7723a9d61fb5ab3143',
@@ -59,7 +65,7 @@ plugin({
 plugin({
   'echasnovski/mini.nvim',
   branch = 'stable',
-  commit = '4cc8b445df6234bccfe3c3dbdbb3fe64cd3861c5',
+  commit = '06eddfd8d6341e6c4f53ec9ae109a376a566329d',
   event = 'BufReadPost',
   config = function()
     require('modules.tools.configs.mini')
@@ -124,5 +130,12 @@ plugin({
   disable = true,
   config = function()
     require('modules.tools.configs.auto-session')
+  end,
+})
+
+plugin({
+  'iamcco/markdown-preview.nvim',
+  run = function()
+    vim.fn['mkdp#util#install']()
   end,
 })
