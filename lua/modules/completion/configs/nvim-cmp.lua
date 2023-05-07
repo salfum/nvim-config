@@ -1,5 +1,16 @@
 local cmp = require('cmp')
 
+if not packer_plugins['LuaSnip'].loaded then
+  vim.cmd([[packadd LuaSnip]])
+end
+
+local luasnip = require('luasnip')
+
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+end
+
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
 local select_opts = { behavior = cmp.SelectBehavior.Select }
@@ -12,14 +23,15 @@ cmp.setup({
   },
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      luasnip.lsp_expand(args.body)
     end,
   },
   sources = {
-    { name = 'path' },
-    { name = 'nvim_lsp', keyword_length = 3 },
-    { name = 'buffer', keyword_length = 3 },
-    { name = 'luasnip', keyword_length = 2 },
+    { name = 'nvim_lua', max_item_count = 10 },
+    { name = 'nvim_lsp', max_item_count = 10 },
+    { name = 'luasnip' },
+    { name = 'path', max_item_count = 10 },
+    { name = 'buffer', keyword_length = 4, max_item_count = 10 },
   },
   formatting = {
     fields = { 'menu', 'abbr', 'kind' },
@@ -39,20 +51,18 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
 
     ['<Tab>'] = cmp.mapping(function(fallback)
-      local col = vim.fn.col('.') - 1
-
       if cmp.visible() then
-        cmp.select_next_item(select_opts)
-      elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        fallback()
-      else
+        cmp.select_next_item()
+      elseif has_words_before() then
         cmp.complete()
+      else
+        fallback()
       end
     end, { 'i', 's' }),
 
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_prev_item(select_opts)
+        cmp.select_prev_item()
       else
         fallback()
       end

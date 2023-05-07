@@ -35,7 +35,7 @@ plugin({
     { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
     { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
     { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
-    { 'hrsh7th/cmp-nvim-lsp', ft = enabled_lsp_filetypes },
+    { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp', ft = { 'lua' } },
   },
 })
@@ -48,6 +48,7 @@ plugin({
     require('modules.completion.configs.LuaSnip')
   end,
 })
+
 plugin({ 'rafamadriz/friendly-snippets', event = 'BufReadPost' })
 
 plugin({
@@ -80,9 +81,20 @@ plugin({
 
 plugin({
   'jose-elias-alvarez/null-ls.nvim',
-  commit = '753ad51790a966b42997ac935e26573fb6d5864a',
+  commit = '07d4ed4c6b561914aafd787453a685598bec510f',
   event = 'BufReadPost',
   config = function()
     require('modules.completion.configs.null-ls')
   end,
+})
+
+plugin({
+  'lukas-reineke/lsp-format.nvim',
+  config = function()
+    require('modules.completion.configs.lsp-format')
+  end,
+})
+
+plugin({
+  'joechrisellis/lsp-format-modifications.nvim',
 })

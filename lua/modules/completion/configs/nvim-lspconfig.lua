@@ -2,7 +2,7 @@ local home = os.getenv('HOME')
 local lspconfig = require('lspconfig')
 
 require('mason').setup({})
-require('mason-lspconfig').setup({ automatic_installation = true })
+require('mason-lspconfig').setup({})
 
 local basic_capabilities = vim.lsp.protocol.make_client_capabilities()
 basic_capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -11,14 +11,14 @@ basic_capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 local disabled_formatting_servers = {
-  'sumneko_lua',
+  'lua_ls',
 }
 
 if not packer_plugins['cmp-nvim-lsp'].loaded then
   vim.cmd([[packadd cmp-nvim-lsp]])
 end
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(basic_capabilities)
+local capabilities = require('cmp_nvim_lsp').default_capabilities(basic_capabilities)
 
 local lsp_defaults = {
   flags = {
@@ -26,29 +26,15 @@ local lsp_defaults = {
   },
   capabilities = capabilities,
   on_attach = function(client, bufnr)
-    for _, v in ipairs(disabled_formatting_servers) do
-      if v == client.name then
-        client.resolved_capabilities.document_formatting = false
-      end
-    end
-
     require('lsp_signature').on_attach(client, bufnr)
+    require('lsp-format').on_attach(client)
+    vim.api.nvim_create_augroup("Format", {})
 
     vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
   end,
 }
 
 lspconfig.util.default_config = vim.tbl_deep_extend('force', lspconfig.util.default_config, lsp_defaults)
-
-vim.api.nvim_create_autocmd('User', {
-  pattern = 'LspAttached',
-  desc = 'LSP actions',
-  callback = lsp_keymaps,
-})
-
-vim.cmd([[
-    autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)
-]])
 
 -- diagnostic config
 
@@ -85,7 +71,7 @@ lspconfig.elixirls.setup({
   },
 })
 
-lspconfig.sumneko_lua.setup({
+lspconfig.lua_ls.setup({
   settings = {
     Lua = {
       runtime = {
@@ -110,7 +96,7 @@ lspconfig.sumneko_lua.setup({
   },
 })
 
-local servers_with_default_settings = {
+servers_with_default_settings = {
   'jsonls',
 }
 
